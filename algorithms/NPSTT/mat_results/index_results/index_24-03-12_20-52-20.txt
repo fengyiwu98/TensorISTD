@@ -1,0 +1,4 @@
+ noise_c5 \ NPSTT: SCR Gain = 5.6793, BSF = 4.8741, CG = 1.0846, BSR = 4.2082
+ noise_t5 \ NPSTT: SCR Gain = 7.8106, BSF = 6.3226, CG = 1.0832, BSR = 4.3025
+ _noise5 \ NPSTT: SCR Gain = 14.2371, BSF = 14.4181, CG = 0.9258, BSR = 4.5977
+ noises5 \ NPSTT: SCR Gain = 7.8246, BSF = 6.8523, CG = 1.0464, BSR = 4.5174

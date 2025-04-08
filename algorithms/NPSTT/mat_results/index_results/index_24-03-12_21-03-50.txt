@@ -1,0 +1,4 @@
+ noise_c5 \ WSWTNN: SCR Gain = 1.4446, BSF = 1.1369, CG = 1.2834, BSR = 1.9005
+ noise_t5 \ WSWTNN: SCR Gain = 1.7656, BSF = 1.3685, CG = 1.3047, BSR = 2.3426
+ _noise5 \ WSWTNN: SCR Gain = 1.4891, BSF = 1.1647, CG = 1.2900, BSR = 1.9279
+ noises5 \ WSWTNN: SCR Gain = 1.4900, BSF = 1.1653, CG = 1.2909, BSR = 1.9577

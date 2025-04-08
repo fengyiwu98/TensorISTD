@@ -1,0 +1,2 @@
+ _noise6 \ STPA-FCTN: SCR Gain = 0.8813, BSF = 4.9021, CG = 1.2847, BSR = 3.3309
+ noises6 \ STPA-FCTN: SCR Gain = 1.3087, BSF = 2.6960, CG = 1.6757, BSR = 3.3528

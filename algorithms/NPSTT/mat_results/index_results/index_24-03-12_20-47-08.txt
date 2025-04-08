@@ -1,0 +1,4 @@
+ noise_c6 \ NPSTT: SCR Gain = Inf, BSF = Inf, CG = 0.0000, BSR = Inf
+ noise_t6 \ NPSTT: SCR Gain = Inf, BSF = Inf, CG = 0.0000, BSR = Inf
+ _noise6 \ NPSTT: SCR Gain = 0.0971, BSF = 50.0381, CG = 0.0292, BSR = 7.8335
+ noises6 \ NPSTT: SCR Gain = 0.0342, BSF = 110.4700, CG = 0.0000, BSR = 8.8750

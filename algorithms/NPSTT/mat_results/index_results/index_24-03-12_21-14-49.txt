@@ -1,0 +1,2 @@
+ _noise6 \ NPSTT: SCR Gain = 60.1466, BSF = 33.0354, CG = 1.9686, BSR = 6.1791
+ noises6 \ NPSTT: SCR Gain = 109.3845, BSF = 60.9573, CG = 2.0304, BSR = 6.9202

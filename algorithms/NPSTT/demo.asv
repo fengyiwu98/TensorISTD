@@ -1,0 +1,198 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% If you have any questions, please contact:
+% Author: Guanghui Wang
+% Email: wangguang147@qq.com
+% Copyright:  University of Electronic Science and Technology of China
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%* License: Our code is only available for non-commercial research use.
+
+clear all;clc;close all;
+addpath 'function'
+addpath 'lib'
+%%%%%%%获取图像的路徿%%%%%%%%
+% 图像序列文件夹路徿
+exter='.bmp';
+% 霿??获取图片的濦?°（这个数量要小于等于文件夹下图片濦?°）
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+tic
+%% 参数的设罿
+%%%%%%%%%以下参数可修政%%%%%%%%%%
+patchSize = 60;  % patch 的大尿
+slideStep = 60;  % 滑动窗口的步长
+frame = 3;       % 前后各frame帿
+
+patchNum = 3; 
+  % 当前帧位罿
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+tem = fix(patchNum/2); % 用于padding的临时参数（向下取整＿
+file1={'data13\'};
+Length=[763];
+for p=1:1
+   file_path = ['D:\研二上\code\benchmark合集\benchmark_release(wyl)\dataset\data\' file1{p}];
+   png_res_base_path=['D:\研二上\code\benchmark合集\benchmark_release(wyl)\png_results\' file1{p} '\NPSTT\'];
+   img_num = Length(p);
+ path1 = [file_path,num2str(1,'%04d'),  exter]; 
+%path1 = [file_path,num2str(1),'.png'];
+img1 = imread(path1); 
+
+if ndims( img1 ) == 3
+    img1 = rgb2gray( img1 );
+end
+
+%由于同一个序列的大小丿?· 共享这些参数
+[imgHei, imgWid] = size(img1);
+% 行???数
+rowPatchNum = ceil((imgHei - patchSize) / slideStep) + 1;  % patch行数
+colPatchNum = ceil((imgWid - patchSize) / slideStep) + 1;  % patch列数
+% 各patch的左上角坐标
+rowPosArr = [1 : slideStep : (rowPatchNum - 1) * slideStep, imgHei - patchSize + 1];
+colPosArr = [1 : slideStep : (colPatchNum - 1) * slideStep, imgWid - patchSize + 1];
+% 创建存放承??图片的Patch的cell
+% extend_curcel 为了解决边界问题
+curcel = cell(rowPatchNum,colPatchNum,img_num);  % 行数*列数*帧数
+extend_curcel = cell(rowPatchNum+2*tem,colPatchNum+2*tem,img_num);  % padding
+
+for i = 1:img_num
+    path = [file_path,num2str(i,'%04d'),  exter];
+
+   % path = [file_path,num2str(i),'.png'];
+    img = imread(path); 
+   
+    %%格式问题
+    if ndims( img ) == 3
+        img = rgb2gray( img );
+    end
+    img = double(img);
+       
+    %% 把序列图像的承??patch放入到cell丿 
+    for row = 1:rowPatchNum
+        for col = 1:colPatchNum
+            % 在第i张图像中截取第row行第col列的patch
+            tmp_patch = img(rowPosArr(1,row) : rowPosArr(1,row) + patchSize - 1, colPosArr(1,col) : colPosArr(1,col) + patchSize - 1);
+            curcel{row,col,i} = tmp_patch;
+            extend_curcel{row+tem,col+tem,i} = tmp_patch;
+        end
+    end
+    
+    % 扩展（复制相邻像素）
+    % 四角
+    for t1 = 1:tem
+        for t2 = 1:tem
+            extend_curcel{t1,t2,i} = curcel{1,1,i};
+        end
+    end
+    for t1 = 1:tem
+        for t2 = tem+colPatchNum+1:tem+colPatchNum+tem
+            extend_curcel{t1,t2,i} = curcel{1,colPatchNum,i};
+        end
+    end
+    for t1 = tem+rowPatchNum+1:tem+rowPatchNum+tem
+        for t2 = 1:tem
+            extend_curcel{t1,t2,i} = curcel{rowPatchNum,1,i};
+        end
+    end
+    for t1 = tem+rowPatchNum+1:tem+rowPatchNum+tem
+        for t2 = tem+colPatchNum+1:tem+colPatchNum+tem
+            extend_curcel{t1,t2,i} = curcel{rowPatchNum,colPatchNum,i};
+        end
+    end
+    % 四边
+    for t1 = 1:tem
+        for t2 = tem+1:tem+colPatchNum
+            extend_curcel{t1,t2,i} = curcel{1,t2-tem,i};
+        end
+    end
+    for t1 = tem+rowPatchNum+1:tem+rowPatchNum+tem
+        for t2 = tem+1:tem+colPatchNum
+            extend_curcel{t1,t2,i} = curcel{rowPatchNum,t2-tem,i};
+        end
+    end
+    for t1 = tem+1:tem+rowPatchNum
+        for t2 = 1:tem
+            extend_curcel{t1,t2,i} = curcel{t1-tem,1,i};
+        end
+    end
+    for t1 = tem+1:tem+rowPatchNum
+        for t2 = tem+colPatchNum+1:tem+colPatchNum+tem
+            extend_curcel{t1,t2,i} = curcel{t1-tem,colPatchNum,i};
+        end
+    end
+end
+
+for m=4:4%Length(p)-3
+   
+curframe = m; 
+%% 构建NPSTT
+tensorNum = patchNum*patchNum*(frame*2+1);  % 7帧图像，每帧叿个patch —?dim(3)=63
+% 当前块在63个块中的位置
+% curpatch = patchNum*patchNum*2*frame+patchNum*tem+tem+1;  %错了？？＿
+curpatch = patchNum*patchNum*frame+patchNum*tem+tem+1; 
+% 目标与背景张量的大小均与当前帧所有patch堆叠成的张量大小丿??
+curframetartensor = zeros(patchSize, patchSize, rowPatchNum*colPatchNum);
+curframebartensor = zeros(patchSize, patchSize, rowPatchNum*colPatchNum);
+t = 0;
+
+for row = tem+1:rowPatchNum+tem  % 选定当前块（不迨??padding部分＿
+    for col = tem+1:colPatchNum+tem
+        
+        % 获取对应当前的帧的当前块的tensor
+        k = 0;
+        tmp_curpatchtensor = zeros(patchSize, patchSize, tensorNum);        
+        for frameNum = curframe-frame:curframe+frame  % 与当前帧相关的前后帧
+            for patchRow = -tem:tem  % 当前块及其空间周围块
+                for patchCol = -tem:tem
+                    k = k+1;
+                    tmp_curpatchtensor(:,:,k) = extend_curcel{row+patchRow,col+patchCol,frameNum};
+                end
+            end           
+        end
+
+        % lambda为平衡低秩稀疏分量的参数
+       
+
+        lambda = 1/sqrt(patchNum*patchNum*(1+2*frame)*patchSize);
+         [tenBack,tenTar] = tCSVT(tmp_curpatchtensor,lambda);
+         
+       % [tenBack,tenTar] = RTRC(tmp_curpatchtensor);
+%         tmp_curpatchtensor=ipermute(tmp_curpatchtensor,[1,3,2]);
+%          [tenBack,tenTar] = ATVSTIPT1LPLS(tmp_curpatchtensor);
+%          tenBack=ipermute(tenBack,[1,3,2]);
+%         tenTar=ipermute(tenTar,[1,3,2]);
+        t = t+1;       
+        curframetartensor(:,:,t) = tenTar(:,:,curpatch);
+        curframebartensor(:,:,t) = tenBack(:,:,curpatch);
+        L1(:,:,t)=tenTar(:,:,);
+        L2(:,:,t)=tenTar(:,:,50);
+        L3(:,:,t)=tenTar(:,:,59);
+    end
+end
+
+ path2 = [file_path,...
+         num2str(curframe,'%04d'),  exter]; 
+%path2 = [file_path,num2str(curframe),'.png'];
+curImg = imread(path2);   
+
+%%格式问题
+if ndims( curImg ) == 3
+    curImg = rgb2gray( curImg );
+end
+curImg = double(curImg);
+
+tarImg = res_patch_ten(curframetartensor, curImg, patchSize, slideStep);
+backImg = res_patch_ten(curframebartensor, curImg, patchSize, slideStep);
+res_path = [png_res_base_path, num2str(m, '%04d'), '.png'];
+imwrite(tarImg / (max(tarImg(:)) + eps), res_path);
+
+end
+end
+
+tarImg = res_patch_ten(L1, curImg, patchSize, slideStep);res_path = [png_res_base_path, num2str(761, '%04d'), '.png'];
+imwrite(tarImg / (max(tarImg(:)) + eps), res_path);
+
+% toc
+% figure,
+% subplot(131),imshow(curImg,[]),title('Ori image');
+% subplot(132),imshow(tarImg,[]),title('Target image');
+% subplot(133),imshow(backImg,[]),title('Back image');
+%tarImg = res_patch_ten(L(:,:,:,4), curImg, patchSize, slideStep);figure,imshow(tarImg,[])
