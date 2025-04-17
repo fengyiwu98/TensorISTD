@@ -48,15 +48,15 @@ We used sequences from [[1]](http://www.csdata.org/en/p/387/).
     <td class="tg-c3ow">IPI</td>
     <td class="tg-c3ow"></td>
     <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
+    <td class="tg-c3ow">1.8051</td>
+    <td class="tg-c3ow">0.9926</td>
+    <td class="tg-c3ow">0.8562</td>
+    <td class="tg-c3ow">5.6319e-2</td>
+    <td class="tg-c3ow">1.8432</td>
+    <td class="tg-c3ow">1.5384e2</td>
+    <td class="tg-c3ow">1.8488</td>
+    <td class="tg-c3ow">0.9870</td>
+    <td class="tg-c3ow">0.8506</td>
   </tr>
   <tr>
     <td class="tg-c3ow">TV-PCP</td>
@@ -118,15 +118,15 @@ We used sequences from [[1]](http://www.csdata.org/en/p/387/).
     <td class="tg-c3ow">PSTNN</td>
     <td class="tg-c3ow"></td>
     <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
+    <td class="tg-c3ow">1.4857</td>
+    <td class="tg-c3ow">0.9414</td>
+    <td class="tg-c3ow">0.7511</td>
+    <td class="tg-c3ow">5.9107e-3</td>
+    <td class="tg-c3ow">1.6865</td>
+    <td class="tg-c3ow">1.3064e2</td>
+    <td class="tg-c3ow">1.6925</td>
+    <td class="tg-c3ow">0.9354</td>
+    <td class="tg-c3ow">0.7452</td>
   </tr>
   <tr>
     <td class="tg-c3ow">LogTFNN</td>
@@ -160,56 +160,56 @@ We used sequences from [[1]](http://www.csdata.org/en/p/387/).
     <td class="tg-c3ow">NPSTT</td>
     <td class="tg-c3ow"></td>
     <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
+    <td class="tg-c3ow">1.8619</td>
+    <td class="tg-c3ow">0.9749</td>
+    <td class="tg-c3ow">0.7894</td>
+    <td class="tg-c3ow">5.1547e-3</td>
+    <td class="tg-c3ow">1.7591</td>
+    <td class="tg-c3ow">1.5322</td>
+    <td class="tg-c3ow">1.7643</td>
+    <td class="tg-c3ow">0.9698</td>
+    <td class="tg-c3ow">0.7842</td>
   </tr>
   <tr>
     <td class="tg-c3ow">4-D TT</td>
     <td class="tg-c3ow"></td>
     <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
+    <td class="tg-c3ow">2.1198</td>
+    <td class="tg-c3ow">0.9994</td>
+    <td class="tg-c3ow">0.9310</td>
+    <td class="tg-c3ow">5.1442e-3</td>
+    <td class="tg-c3ow">1.9253</td>
+    <td class="tg-c3ow">1.8112e2</td>
+    <td class="tg-c3ow">1.9304</td>
+    <td class="tg-c3ow">0.9942</td>
+    <td class="tg-c3ow">0.9258</td>
   </tr>
   <tr>
     <td class="tg-c3ow">4-D TR</td>
     <td class="tg-c3ow"></td>
     <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
+    <td class="tg-c3ow">2.1445</td>
+    <td class="tg-c3ow">0.9969</td>
+    <td class="tg-c3ow">0.9310</td>
+    <td class="tg-c3ow">5.0919e-2</td>
+    <td class="tg-c3ow">1.9228</td>
+    <td class="tg-c3ow">1.8294e2</td>
+    <td class="tg-c3ow">1.9279</td>
+    <td class="tg-c3ow">0.9918</td>
+    <td class="tg-c3ow">0.9259</td>
   </tr>
   <tr>
     <td class="tg-c3ow">STPA-FCTN</td>
     <td class="tg-c3ow"></td>
     <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
+    <td class="tg-c3ow">2.1593</td>
+    <td class="tg-c3ow">0.9994</td>
+    <td class="tg-c3ow">0.9587</td>
+    <td class="tg-c3ow">5.0851e-3</td>
+    <td class="tg-c3ow">1.9530</td>
+    <td class="tg-c3ow">1.8866e2</td>
+    <td class="tg-c3ow">1.9581</td>
+    <td class="tg-c3ow">0.9944</td>
+    <td class="tg-c3ow">0.9536</td>
   </tr>
 </tbody></table>
