@@ -60,7 +60,7 @@ We used sequences from [[1]](http://www.csdata.org/en/p/387/).
   </tr>
   <tr>
     <td class="tg-c3ow">TV-PCP</td>
-    <td class="tg-c3ow"></td>
+    <td class="tg-c3ow">10<sup>-2</sup></td>
     <td class="tg-c3ow"></td>
     <td class="tg-c3ow"></td>
     <td class="tg-c3ow"></td>
