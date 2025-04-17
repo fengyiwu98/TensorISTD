@@ -165,7 +165,7 @@ We used sequences from [[1]](http://www.csdata.org/en/p/387/).
     <td class="tg-c3ow">0.7894</td>
     <td class="tg-c3ow">5.1547e-3</td>
     <td class="tg-c3ow">1.7591</td>
-    <td class="tg-c3ow">1.5322</td>
+    <td class="tg-c3ow">1.5322e2</td>
     <td class="tg-c3ow">1.7643</td>
     <td class="tg-c3ow">0.9698</td>
     <td class="tg-c3ow">0.7842</td>
