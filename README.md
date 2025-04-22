@@ -173,7 +173,7 @@ We used sequences from [[1]](http://www.csdata.org/en/p/387/).
   <tr>
     <td class="tg-c3ow">4-D TT</td>
     <td class="tg-c3ow">92.588</td>
-    <td class="tg-c3ow">44.4040</td>
+    <td class="tg-c3ow">44.404</td>
     <td class="tg-c3ow">2.1198</td>
     <td class="tg-c3ow">0.9994</td>
     <td class="tg-c3ow">0.9310</td>
