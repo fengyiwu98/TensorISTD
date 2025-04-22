@@ -46,8 +46,8 @@ We used sequences from [[1]](http://www.csdata.org/en/p/387/).
 <tbody>
   <tr>
     <td class="tg-c3ow">IPI</td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
+    <td class="tg-c3ow">inf</td>
+    <td class="tg-c3ow">inf</td>
     <td class="tg-c3ow">1.8051</td>
     <td class="tg-c3ow">0.9926</td>
     <td class="tg-c3ow">0.8562</td>
@@ -116,8 +116,8 @@ We used sequences from [[1]](http://www.csdata.org/en/p/387/).
   </tr>
   <tr>
     <td class="tg-c3ow">PSTNN</td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
+    <td class="tg-c3ow">inf</td>
+    <td class="tg-c3ow">inf</td>
     <td class="tg-c3ow">1.4857</td>
     <td class="tg-c3ow">0.9414</td>
     <td class="tg-c3ow">0.7511</td>
@@ -158,8 +158,8 @@ We used sequences from [[1]](http://www.csdata.org/en/p/387/).
   </tr>
   <tr>
     <td class="tg-c3ow">NPSTT</td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
+    <td class="tg-c3ow">inf</td>
+    <td class="tg-c3ow">inf</td>
     <td class="tg-c3ow">1.8619</td>
     <td class="tg-c3ow">0.9749</td>
     <td class="tg-c3ow">0.7894</td>
@@ -172,8 +172,8 @@ We used sequences from [[1]](http://www.csdata.org/en/p/387/).
   </tr>
   <tr>
     <td class="tg-c3ow">4-D TT</td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
+    <td class="tg-c3ow">92.588</td>
+    <td class="tg-c3ow">44.4040</td>
     <td class="tg-c3ow">2.1198</td>
     <td class="tg-c3ow">0.9994</td>
     <td class="tg-c3ow">0.9310</td>
@@ -186,8 +186,8 @@ We used sequences from [[1]](http://www.csdata.org/en/p/387/).
   </tr>
   <tr>
     <td class="tg-c3ow">4-D TR</td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
+    <td class="tg-c3ow">105.63</td>
+    <td class="tg-c3ow">50.668</td>
     <td class="tg-c3ow">2.1445</td>
     <td class="tg-c3ow">0.9969</td>
     <td class="tg-c3ow">0.9310</td>
@@ -200,8 +200,8 @@ We used sequences from [[1]](http://www.csdata.org/en/p/387/).
   </tr>
   <tr>
     <td class="tg-c3ow">STPA-FCTN</td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
+    <td class="tg-c3ow">156.40</td>
+    <td class="tg-c3ow">73.478</td>
     <td class="tg-c3ow">2.1593</td>
     <td class="tg-c3ow">0.9994</td>
     <td class="tg-c3ow">0.9587</td>
