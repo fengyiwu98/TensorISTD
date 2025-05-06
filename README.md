@@ -56,6 +56,36 @@ TensorISTD/
 
 ### Get Results
 
+Select the desired algorithm name and datasets：
+```matlab
+%% user configs
+eval_algo_names = ...
+    {
+     'IPI' %'TT','TR','MPCM','IPI','LogTFNN','NPSTT','PSTNN','RIPT','STT','Tophat'
+    };
+
+eval_data_names = ...
+    {
+     'sequence1' %'sequence1','sequence4','sequence7','sequence9','sequence11','sequence12'
+    };
+```
+Execute the code in step 1：
+```matlab
+%% step 1: Use all the evaluation algorithms to get the result plots for all the evaluation datasets present in . /result in the mat file
+get_algo_result(eval_algo_names, eval_data_names, ...
+     img_types, algo_base_path, data_base_path, res_base_path, time_path );
+```
+Fill in the the following configuration：
+```matlab
+img_types = {'*.jpg', '*.bmp', '*.png'}; % Image Type
+algo_base_path = '.\algorithms\'; % Algorithm Path
+data_base_path = '.\dataset/data\'; % Datasets Path
+res_base_path =  '.\all_result\'; % Fig Results Path
+time_path = '.\time_results\'; % Time Path
+```
+Note:
+If the metrics are calculated directly from the existing test image, then comment out this section and go directly to step 2.
+
 ### Evaluation
 
 ### Draw Visualization Images
