@@ -13,6 +13,47 @@ Matlab 2021b or higher.
 
 ## How to Use
 
+<details>
+<summary>Document Structure📂 </summary>
+  
+```plaintext
+TensorISTD/
+├── algorithms/               # Core detection algorithms
+│   ├── 4D_ISTD/              # 4D infrared small target detection
+│   ├── ASTTV-NTLA/           # 
+│   ├── IPI/                  # 
+│   ├── LogTFNN/              # 
+│   ├── MPCM/                 # 
+│   ├── NPTST/                # 
+│   ├── PSTNN/                # 
+│   ├── RIPT/                 # 
+│   ├── STPA_FCTN/            # 
+│   ├── STT/                  # 
+│   └── Tophat/               # 
+├── all_results/              # Raw detection outputs
+│   └── sequence1/            # Sample sequence
+│       └── STPA_FCTN/        # Algorithm-specific results
+├── fig_results/              # Visualization outputs
+│   └── sequence1/            # Sequence-specific figures
+├── mat_results/              # Performance metrics
+│   ├── curve_results/        # .mat documents
+│   └── index_results/        # Metrics records(3DROC,SCR, etc.)
+├── time_results/             # Runtime logs
+│    └── STPA-FCTN.txt        # Time consumption record
+├── utils/                    # Support utilities
+│   ├── analyse_pts.m         # Point analysis script
+│   ├── curves_draw.m         # Visualization generator
+│   ├── get_algo_result.m     # Algorithm output collector
+│   ├── get_curves.m          # Metrics calculator
+│   ├── measure_calculator.m  # SCR/CG/BSF/BSR calculator
+│   └── pt_nms.m              # Non-maximum suppression
+├── LICENSE                   # open-source license
+├── README.md                  
+└── evaluation.m              
+```
+  
+</details>
+
 ### Get Results
 
 ### Evaluation
@@ -213,3 +254,5 @@ We used sequences from [[1]](http://www.csdata.org/en/p/387/).
     <td class="tg-c3ow">0.9536</td>
   </tr>
 </tbody></table>
+
+## References
