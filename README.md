@@ -83,10 +83,33 @@ data_base_path = '.\dataset/data\'; % Datasets Path
 res_base_path =  '.\all_result\'; % Fig Results Path
 time_path = '.\time_results\'; % Time Path
 ```
-Note:
+`Note`
 If the metrics are calculated directly from the existing test image, then comment out this section and go directly to step 2.
 
 ### Evaluation
+Calculate the corresponding .mat file based on step 1 or the existing result plots with the target coordinates of the dataset and store it in the curve index folder.
+```matlab
+%% step 2: Combining the result plots from step 1 and . GT under /dataset/ann/ to get the roc sequence results
+get_curves(eval_algo_names, eval_data_names, thres_num, radius, res_base_path, ...
+     mat_base_path, txt_base_path, mask_base_path, preimg_type);
+```
+Related Configurations：
+```matlab
+mat_base_path = '.\mat_results\'; %Storage Path for .mat Files
+txt_base_path =  './dataset/anno/'; %Target coordinates Path
+preimg_type = '*.png'; %Result Image Format:.jpg&.png&.bmp...
+```
+Steps 3 and 4 are then performed to obtain the metrics and the 3DROC schematics：
+```matlab
+%% step 3: Calculating metrics and plotting 3DROC
+curves_drawer(1, eval_algo_names, eval_data_names, figure_base_path, mat_base_path, x_axis_ratio, FPR_thres);
+
+%% step 4: Calculate SCRG gain,CG, BSF, BSR
+measure_calculator(eval_algo_names, eval_data_names, data_base_path, res_base_path, ...
+    mat_base_path, txt_base_path, img_types, preimg_type);
+```
+The following metrics can be obtained：
+SCRG, CG, BSF, $AUC_{FPR,TPR}$</th>, $AUC_{\tau,TPR}$</th>, $AUC_{\tau,FPR}$</th>, $AUC_{ODP}$</th>, $AUC_{SNPR}$</th>, $AUC_{TD}$</th>, $AUC_{BS}$</th>, $AUC_{TDBS}$</th>
 
 ### Draw Visualization Images
 
