@@ -56,7 +56,7 @@ TensorISTD/
 
 ### Get Results
 
-Select the desired algorithm name and datasets：
+- Select the desired algorithm name and datasets：
 ```matlab
 %% user configs
 eval_algo_names = ...
@@ -69,13 +69,13 @@ eval_data_names = ...
      'sequence1' %'sequence1','sequence4','sequence7','sequence9','sequence11','sequence12'
     };
 ```
-Execute the code in step 1：
+- Execute the code in step 1：
 ```matlab
 %% step 1: Use all the evaluation algorithms to get the result plots for all the evaluation datasets present in . /result in the mat file
 get_algo_result(eval_algo_names, eval_data_names, ...
      img_types, algo_base_path, data_base_path, res_base_path, time_path );
 ```
-Fill in the the following configuration：
+- Fill in the the following configuration：
 ```matlab
 img_types = {'*.jpg', '*.bmp', '*.png'}; % Image Type
 algo_base_path = '.\algorithms\'; % Algorithm Path
@@ -87,30 +87,73 @@ time_path = '.\time_results\'; % Time Path
 If the metrics are calculated directly from the existing test image, then comment out this section and go directly to step 2.
 
 ### Evaluation
-Calculate the corresponding .mat file based on step 1 or the existing result plots with the target coordinates of the dataset and store it in the curve index folder.
-```matlab
-%% step 2: Combining the result plots from step 1 and . GT under /dataset/ann/ to get the roc sequence results
-get_curves(eval_algo_names, eval_data_names, thres_num, radius, res_base_path, ...
-     mat_base_path, txt_base_path, mask_base_path, preimg_type);
-```
-Related Configurations：
-```matlab
-mat_base_path = '.\mat_results\'; %Storage Path for .mat Files
-txt_base_path =  './dataset/anno/'; %Target coordinates Path
-preimg_type = '*.png'; %Result Image Format:.jpg&.png&.bmp...
-```
-Steps 3 and 4 are then performed to obtain the metrics and the 3DROC schematics：
-```matlab
-%% step 3: Calculating metrics and plotting 3DROC
-curves_drawer(1, eval_algo_names, eval_data_names, figure_base_path, mat_base_path, x_axis_ratio, FPR_thres);
-
-%% step 4: Calculate SCRG gain,CG, BSF, BSR
-measure_calculator(eval_algo_names, eval_data_names, data_base_path, res_base_path, ...
-    mat_base_path, txt_base_path, img_types, preimg_type);
-```
-The following metrics can be obtained：
+ - The following metrics can be obtained：
 SCRG, CG, BSF, $AUC_{FPR,TPR}$</th>, $AUC_{\tau,TPR}$</th>, $AUC_{\tau,FPR}$</th>, $AUC_{ODP}$</th>, $AUC_{SNPR}$</th>, $AUC_{TD}$</th>, $AUC_{BS}$</th>, $AUC_{TDBS}$</th>
 
+   - Calculate the corresponding .mat file based on step 1 or the existing result plots with the target coordinates of the dataset and store it in the curve index folder.
+   ```matlab
+   %% step 2: Combining the result plots from step 1 and . GT under /dataset/ann/ to get the roc sequence results
+   get_curves(eval_algo_names, eval_data_names, thres_num, radius, res_base_path, ...
+        mat_base_path, txt_base_path, mask_base_path, preimg_type);
+   ```
+   - Related Configurations：
+   ```matlab
+   mat_base_path = '.\mat_results\'; % Storage Path for .mat Files
+   txt_base_path =  './dataset/anno/'; % Target coordinates Path
+   preimg_type = '*.png'; % Result Image Format:.jpg&.png&.bmp...
+   ```
+   - Steps 3 and 4 are then performed to obtain the metrics and the 3DROC schematics：
+   ```matlab
+   %% step 3: Calculating metrics and plotting 3DROC
+   curves_drawer(1, eval_algo_names, eval_data_names, figure_base_path, mat_base_path, x_axis_ratio, FPR_thres);
+
+   %% step 4: Calculate SCRG gain,CG, BSF, BSR
+   measure_calculator(eval_algo_names, eval_data_names, data_base_path, res_base_path, ...
+       mat_base_path, txt_base_path, img_types, preimg_type);
+   ```
+   - The evaluation result will be saved in `index_results`:
+   ```
+   ├──./mat_result/
+   │    ├── curve_results
+   │    │    ├── sequence1_STPA-FCTN.mat
+   │    │    ├── ...
+   │    ├── index_results
+   │    │    ├── sequence1.txt
+   │    │    ├── ...
+   ```
+ - The 3DROC image can be obtained during the execution of step 3.
+
+   - Related Configurations：
+   ```matlab
+   figure_base_path = '.\fig_results\'; % 3DROC Figure Path
+   x_axis_ratio = 1e-4;
+   FPR_thres = 1;
+   ```
+   ```matlab
+   % function curves_drawer
+   % Line Color
+       color_map = [ ...
+   %          55/255   126/255  184/255;  % Blue
+   %          77/255   175/255  74/255;   % Green
+   %          228/255  26/255   28/255;   % Red
+   %          255/255  217/255  47/255;   % Yellow
+   ];
+   % Line Type
+   LineType = {':' }; %'-.'
+   ```
+   - The evaluation 3DROC result have the following structure:
+   ```
+   ├──./fig_results/
+   │    ├── sequence1
+   │    │    ├── SOTA_1
+   │    │    ├── SOTA_2
+   │    │    ├── SOTA_3
+   │    │    ├── SOTA_4
+   │    ├── sequence2
+   │    │    ├── SOTA_1
+   │    │    ├── ...
+   │    ├── ...
+   ```
 ### Draw Visualization Images
 
 ### Others
