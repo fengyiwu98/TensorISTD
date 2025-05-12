@@ -16,7 +16,7 @@ Matlab 2021b or higher.
 <details>
 <summary>Document Structure📂 </summary>
   
-```plaintext
+```
 TensorISTD/
 ├── algorithms/               # Core detection algorithms
 │   ├── 4D_ISTD/              # 4D infrared small target detection
@@ -58,6 +58,7 @@ TensorISTD/
 
 - Select the desired algorithm name and datasets：
 ```matlab
+%% evaluation.m
 %% user configs
 eval_algo_names = ...
     {
@@ -71,12 +72,14 @@ eval_data_names = ...
 ```
 - Execute the code in step 1：
 ```matlab
+%% evaluation.m
 %% step 1: Use all the evaluation algorithms to get the result plots for all the evaluation datasets present in . /result in the mat file
 get_algo_result(eval_algo_names, eval_data_names, ...
      img_types, algo_base_path, data_base_path, res_base_path, time_path );
 ```
 - Fill in the the following configuration：
 ```matlab
+%% evaluation.m
 img_types = {'*.jpg', '*.bmp', '*.png'}; % Image Type
 algo_base_path = '.\algorithms\'; % Algorithm Path
 data_base_path = '.\dataset/data\'; % Datasets Path
@@ -92,18 +95,21 @@ SCRG, CG, BSF, $AUC_{FPR,TPR}$</th>, $AUC_{\tau,TPR}$</th>, $AUC_{\tau,FPR}$</th
 
    - Calculate the corresponding .mat file based on step 1 or the existing result plots with the target coordinates of the dataset and store it in the curve index folder.
    ```matlab
+   %% evaluation.m
    %% step 2: Combining the result plots from step 1 and . GT under /dataset/ann/ to get the roc sequence results
    get_curves(eval_algo_names, eval_data_names, thres_num, radius, res_base_path, ...
         mat_base_path, txt_base_path, mask_base_path, preimg_type);
    ```
    - Related Configurations：
    ```matlab
+   %% evaluation.m
    mat_base_path = '.\mat_results\'; % Storage Path for .mat Files
    txt_base_path =  './dataset/anno/'; % Target coordinates Path
    preimg_type = '*.png'; % Result Image Format:.jpg&.png&.bmp...
    ```
    - Steps 3 and 4 are then performed to obtain the metrics and the 3DROC schematics：
    ```matlab
+   %% evaluation.m
    %% step 3: Calculating metrics and plotting 3DROC
    curves_drawer(1, eval_algo_names, eval_data_names, figure_base_path, mat_base_path, x_axis_ratio, FPR_thres);
 
@@ -125,12 +131,13 @@ SCRG, CG, BSF, $AUC_{FPR,TPR}$</th>, $AUC_{\tau,TPR}$</th>, $AUC_{\tau,FPR}$</th
 
    - Related Configurations：
    ```matlab
+   %% evaluation.m
    figure_base_path = '.\fig_results\'; % 3DROC Figure Path
    x_axis_ratio = 1e-4;
    FPR_thres = 1;
    ```
    ```matlab
-   % function curves_drawer
+   %% utils\curves_drawer.m
    % Line Color
        color_map = [ ...
    %          55/255   126/255  184/255;  % Blue
@@ -155,7 +162,34 @@ SCRG, CG, BSF, $AUC_{FPR,TPR}$</th>, $AUC_{\tau,TPR}$</th>, $AUC_{\tau,FPR}$</th
    │    ├── ...
    ```
 ### Draw Visualization Images
+ - This following script provides a standardized pipeline for generating publication-quality 3D visualizations from 2D images. 
 
+   - Key Configuration Parameters
+   1. Figure Window
+   ```matlab
+   %% Create figure window
+   figure('Units', 'pixels', 'Position', [100 100 703 641]); % Set window properties (units/position)
+   ```
+   2. Typography Settings
+   ```matlab
+   %% Axes configuration
+   set(gca,...
+       'linewidth', 1, ...      % Axis line width 1pt
+       'Fontname', 'Times New Roman', ... % Western font typeface
+       'FontSize', 27);         % Font size 27pt
+   ```
+   3. Axis Configuration
+   ```matlab
+   xticks(0:50:250);            % X-axis tick interval 50
+   xtickformat('%d');           % X-axis integer format
+   xlim([0 250]);               % X-axis display range [0-250]
+   xtickangle(0);               % X-tick labels horizontal alignment
+   ...
+   ```
+   4. View Perspective
+   ```matlab
+   view(-37.5,30);              % Set 3D view perspective (azimuth -37.5°, elevation 30°)
+   ```
 ### Others
 
 
