@@ -11,10 +11,10 @@ Note: This repository will be updated regularly, so stay tuned for improvements 
 Matlab 2021b or higher.
 
 
-## How to Use
+## 🛠️How to Use
 
 <details>
-<summary>Document Structure📂 </summary>
+<summary>📂Document Structure </summary>
   
 ```
 TensorISTD/
@@ -54,7 +54,7 @@ TensorISTD/
   
 </details>
 
-### Get Results
+### 🚀Get Results
 
 - Select the desired algorithm name and datasets：
 ```matlab
@@ -86,12 +86,15 @@ data_base_path = '.\dataset/data\'; % Datasets Path
 res_base_path =  '.\all_result\'; % Fig Results Path
 time_path = '.\time_results\'; % Time Path
 ```
-`Note`
+💡`Note`
 If the metrics are calculated directly from the existing test image, then comment out this section and go directly to step 2.
 
-### Evaluation
+### 📈Evaluation
  - The following metrics can be obtained：
-SCRG, CG, BSF, $AUC_{FPR,TPR}$</th>, $AUC_{\tau,TPR}$</th>, $AUC_{\tau,FPR}$</th>, $AUC_{ODP}$</th>, $AUC_{SNPR}$</th>, $AUC_{TD}$</th>, $AUC_{BS}$</th>, $AUC_{TDBS}$</th>
+   
+ ✅SCRG, ✅CG, ✅BSF, ✅BSR
+
+ ✅ Multi-perspective AUC Analysis($AUC_{FPR,TPR}$</th>, $AUC_{\tau,TPR}$</th>, $AUC_{\tau,FPR}$</th>, $AUC_{ODP}$</th>, $AUC_{SNPR}$</th>, $AUC_{TD}$</th>, $AUC_{BS}$</th>, $AUC_{TDBS}$</th>)
 
    - Calculate the corresponding .mat file based on step 1 or the existing result plots with the target coordinates of the dataset and store it in the curve index folder.
    ```matlab
@@ -117,7 +120,7 @@ SCRG, CG, BSF, $AUC_{FPR,TPR}$</th>, $AUC_{\tau,TPR}$</th>, $AUC_{\tau,FPR}$</th
    measure_calculator(eval_algo_names, eval_data_names, data_base_path, res_base_path, ...
        mat_base_path, txt_base_path, img_types, preimg_type);
    ```
-   - The evaluation result will be saved in `index_results`:
+   - 📂The evaluation result will be saved in `index_results`:
    ```
    ├──./mat_result/
    │    ├── curve_results
@@ -148,7 +151,7 @@ SCRG, CG, BSF, $AUC_{FPR,TPR}$</th>, $AUC_{\tau,TPR}$</th>, $AUC_{\tau,FPR}$</th
    % Line Type
    LineType = {':' }; %'-.'
    ```
-   - The evaluation 3DROC result have the following structure:
+   - 📂The evaluation 3DROC result have the following structure:
    ```
    ├──./fig_results/
    │    ├── sequence1
@@ -161,7 +164,7 @@ SCRG, CG, BSF, $AUC_{FPR,TPR}$</th>, $AUC_{\tau,TPR}$</th>, $AUC_{\tau,FPR}$</th
    │    │    ├── ...
    │    ├── ...
    ```
-### Draw Visualization Images
+### 🎨Draw Visualization Images
  - This following script provides a standardized pipeline for generating publication-quality 3D visualizations from 2D images. 
 
    - Key Configuration Parameters
