@@ -19,17 +19,17 @@ Matlab 2021b or higher.
 ```
 TensorISTD/
 ├── algorithms/               # Core detection algorithms
-│   ├── 4D_ISTD/              # Infrared Small Target Detection Using Spatiotemporal 4-D Tensor Train and Ring Unfolding
-│   ├── ASTTV-NTLA/           # Nonconvex Tensor Low-Rank Approximation for Infrared Small Target Detection
-│   ├── IPI/                  # Infrared patch-image model for small target detection in a single image
-│   ├── LogTFNN/              # Infrared Small Target Detection via Nonconvex Tensor Fibered Rank Approximation
-│   ├── MPCM/                 # Multiscale patch-based contrast measure for small infrared target detection
-│   ├── NPSTT/                # Infrared Small Target Detection Using Nonoverlapping Patch Spatial–Temporal Tensor Factorization With Capped Nuclear Norm Regularization
-│   ├── PSTNN/                # Infrared small target detection based on partial sum of the tensor nuclear norm
-│   ├── RIPT/                 # Reweighted infrared patch-tensor model with both nonlocal and local priors for single-frame small target detection
+│   ├── 4D_ISTD/              # [1]
+│   ├── ASTTV-NTLA/           # [2]
+│   ├── IPI/                  # [3]
+│   ├── LogTFNN/              # [4]
+│   ├── MPCM/                 # [5]
+│   ├── NPSTT/                # [6]
+│   ├── PSTNN/                # [7]
+│   ├── RIPT/                 # [8]
 │   ├── STPA_FCTN/            # (Ours) 
-│   ├── STT/                  # Small Target Detection in Infrared Videos Based on Spatio-Temporal Tensor Model
-│   └── Tophat/               # Morphology-based algorithm for point target detection in infrared backgrounds
+│   ├── STT/                  # [9]
+│   └── Tophat/               # [10]
 ├── all_results/              # Raw detection outputs
 │   └── sequence1/            # Sample sequence
 │       └── STPA_FCTN/        # Algorithm-specific results
@@ -413,3 +413,42 @@ We used sequences from [[1]](http://www.csdata.org/en/p/387/).
 </tbody></table>
 
 ## References
+[1] F. Wu, H. Yu, A. Liu, J. Luo, and Z. Peng, “Infrared small target detection using spatiotemporal 4-d tensor train and ring unfolding,” IEEE Trans. Geosci. Remote Sens., vol. 61, pp. 1–22, 2023.
+
+[![](https://img.shields.io/badge/Link-grey)](https://ieeexplore.ieee.org/document/10156866)
+
+[2] T. Liu, J. Yang, B. Li, C. Xiao, Y. Sun, Y. Wang, and W. An, “Nonconvex tensor low-rank approximation for infrared small target detection,” IEEE Trans. Geosci. Remote Sens., vol. 60, pp. 1–18, 2021.
+
+[![](https://img.shields.io/badge/Link-grey)](https://ieeexplore.ieee.org/abstract/document/9626011)
+
+[3] C. Gao, D. Meng, Y. Yang, Y. Wang, X. Zhou, and A. G.Hauptmann, “Infrared patch-image model for small target detection in a single image,” IEEE Trans. Image Process., vol. 22, no. 12, pp. 4996–5009, 2013.
+
+[![](https://img.shields.io/badge/Link-grey)](https://ieeexplore.ieee.org/abstract/document/6595533)
+
+[4] X. Kong, C. Yang, S. Cao, C. Li and Z. Peng, "Infrared Small Target Detection via Nonconvex Tensor Fibered Rank Approximation," in IEEE Transactions on Geoscience and Remote Sensing, vol. 60, pp. 1-21, 2022.
+
+[![](https://img.shields.io/badge/Link-grey)](https://ieeexplore.ieee.org/abstract/document/9394596)
+
+[5] Y. Wei, X. You, and H. Li, “Multiscale patch-based contrast measure for small infrared target detection,” Pattern Recognit., vol. 58, pp. 216–226, 2016.
+
+[![](https://img.shields.io/badge/Link-grey)](https://www.sciencedirect.com/science/article/abs/pii/S0031320316300358)
+
+[6] G. Wang, B. Tao, X. Kong, and Z. Peng, “Infrared small target detection using nonoverlapping patch spatial–temporal tensor factorization with capped nuclear norm regularization,” IEEE Trans. Geosci. Remote Sens., vol. 60,pp. 1–17, 2021.
+
+[![](https://img.shields.io/badge/Link-grey)](https://ieeexplore.ieee.org/document/9606877)
+
+[7] L. Zhang and Z. Peng, “Infrared small target detection based on partial sum of the tensor nuclear norm,” Remote Sens., vol. 11, no. 4, p. 382, 2019.
+
+[![](https://img.shields.io/badge/Link-grey)](https://www.mdpi.com/2072-4292/11/4/382)
+
+[8] Y. Dai and Y. Wu, “Reweighted infrared patch-tensor model with both nonlocal and local priors for single-frame small target detection,” IEEE J. Sel. Topics Appl. Earth Observ. Remote Sens., vol. 10, no. 8, pp. 3752–3767, 2017.
+
+[![](https://img.shields.io/badge/Link-grey)](https://ieeexplore.ieee.org/abstract/document/7932858)
+
+[9] H.-K. Liu, L. Zhang, and H. Huang, “Small target detection in infrared videos based on spatio-temporal tensor model,” IEEE Trans. Geosci. Remote Sens., vol. 58, no. 12, pp. 8689–8700, 2020.
+
+[![](https://img.shields.io/badge/Link-grey)](https://ieeexplore.ieee.org/document/9088265)
+
+[10] Victor T. Tom, Tamar Peli, May Leung, and Joseph E. Bondaryk, "Morphology-based algorithm for point target detection in infrared backgrounds", Proc. SPIE 1954, Signal and Data Processing of Small Targets 1993.
+
+[![](https://img.shields.io/badge/Link-grey)](https://www.spiedigitallibrary.org/conference-proceedings-of-spie/1954/0000/Morphology-based-algorithm-for-point-target-detection-in-infrared-backgrounds/10.1117/12.157758.short)
