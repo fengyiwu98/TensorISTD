@@ -19,17 +19,17 @@ Matlab 2021b or higher.
 ```
 TensorISTD/
 ├── algorithms/               # Core detection algorithms
-│   ├── 4D_ISTD/              # 4D infrared small target detection
-│   ├── ASTTV-NTLA/           # 
-│   ├── IPI/                  # 
-│   ├── LogTFNN/              # 
-│   ├── MPCM/                 # 
-│   ├── NPTST/                # 
-│   ├── PSTNN/                # 
-│   ├── RIPT/                 # 
-│   ├── STPA_FCTN/            # 
-│   ├── STT/                  # 
-│   └── Tophat/               # 
+│   ├── 4D_ISTD/              # Infrared Small Target Detection Using Spatiotemporal 4-D Tensor Train and Ring Unfolding
+│   ├── ASTTV-NTLA/           # Nonconvex Tensor Low-Rank Approximation for Infrared Small Target Detection
+│   ├── IPI/                  # Infrared patch-image model for small target detection in a single image
+│   ├── LogTFNN/              # Infrared Small Target Detection via Nonconvex Tensor Fibered Rank Approximation
+│   ├── MPCM/                 # Multiscale patch-based contrast measure for small infrared target detection
+│   ├── NPSTT/                # Infrared Small Target Detection Using Nonoverlapping Patch Spatial–Temporal Tensor Factorization With Capped Nuclear Norm Regularization
+│   ├── PSTNN/                # Infrared small target detection based on partial sum of the tensor nuclear norm
+│   ├── RIPT/                 # Reweighted infrared patch-tensor model with both nonlocal and local priors for single-frame small target detection
+│   ├── STPA_FCTN/            # (Ours) 
+│   ├── STT/                  # Small Target Detection in Infrared Videos Based on Spatio-Temporal Tensor Model
+│   └── Tophat/               # Morphology-based algorithm for point target detection in infrared backgrounds
 ├── all_results/              # Raw detection outputs
 │   └── sequence1/            # Sample sequence
 │       └── STPA_FCTN/        # Algorithm-specific results
@@ -208,8 +208,14 @@ If the metrics are calculated directly from the existing test image, then commen
    ```matlab
    view(-37.5,30);              % Set 3D view perspective (azimuth -37.5°, elevation 30°)
    ```
+   5. Color
+   
+   The colormap is provided as color1.mat.
    - 3D Visualization
      
+   <img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/31.png" width="320px"><img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/seqvis.png" width="320px">
+   
+   <img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/tar31.png" width="320px"><img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/tarvis.png" width="320px">
 
 ### Others
 
