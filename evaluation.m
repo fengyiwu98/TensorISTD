@@ -2,7 +2,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % If you have any questions, please contact:
 % Author:
-% Email: 
+% Email: wufengyi98@163.com
 % Copyright:  University of Electronic Science and Technology of China
 % Date: 2025/04/08
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -34,20 +34,20 @@ img_types = {'*.jpg', '*.bmp', '*.png'};
 preimg_type = '*.png';
 thres_num = 100;
 radius = 1; % radius of object [7x7]
-x_axis_ratio = 1e-4;
+x_axis_ratio = 1e-5;
 FPR_thres = 1;
 
-%% step 1: 使用所有评测算法得到对于所有评测数据集的结果图，存在./result下的mat文件
+%% step 1: Use all the evaluation algorithms to get the result plots for all the evaluation datasets present in . /result in the mat file
 get_algo_result(eval_algo_names, eval_data_names, ...
      img_types, algo_base_path, data_base_path, res_base_path, time_path );
 
-%% step 2: 结合step 1的结果图和./dataset/ann/下的GT，得到roc序列结果
+%% step 2: Combining the result plots from step 1 and . GT under /dataset/ann/ to get the roc sequence results
 get_curves(eval_algo_names, eval_data_names, thres_num, radius, res_base_path, ...
      mat_base_path, txt_base_path, mask_base_path, preimg_type);
 
-%% step 3: 结合step 2中的序列结果，绘制出结果图，图数量和评测数据集数量一致
+%% step 3: Calculating metrics and plotting 3DROC
 curves_drawer(1, eval_algo_names, eval_data_names, figure_base_path, mat_base_path, x_axis_ratio, FPR_thres);
 
-%% step 4: 计算SCRG增益和BSF
+%% step 4: Calculate SCRG gain,CG, BSF, BSR
 measure_calculator(eval_algo_names, eval_data_names, data_base_path, res_base_path, ...
     mat_base_path, txt_base_path, img_types, preimg_type);
