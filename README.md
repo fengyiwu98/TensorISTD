@@ -166,10 +166,19 @@ If the metrics are calculated directly from the existing test image, then commen
    │    │    ├── ...
    │    ├── ...
    ```
+   - The following figures are 3DROC results of STPA-FCTN in seq 1.
+   
+   <img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/sequence1/SOTA_1.png" width="420px"><img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/sequence1/SOTA_2.png" width="420px">
+   <img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/sequence1/SOTA_3.png" width="420px"><img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/sequence1/SOTA_4.png" width="420px">
 
-   <img src="https://github.com/Csy1408/csyfirst/blob/main/fig_results/sequence1/SOTA_1.png" width="420px"><img src="https://github.com/Csy1408/csyfirst/blob/main/fig_results/sequence1/SOTA_2.png" width="420px">
-   <img src="https://github.com/Csy1408/csyfirst/blob/main/fig_results/sequence1/SOTA_3.png" width="420px"><img src="https://github.com/Csy1408/csyfirst/blob/main/fig_results/sequence1/SOTA_4.png" width="420px">
+   - Comparison of multiple algorithms.
+   
+   <img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/algo_1.png" width="420px"><img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/algo_2.png" width="420px">
+   <img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/algo_3.png" width="420px"><img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/algo_4.png" width="420px">
 
+   - Comparison of parameters.
+   
+   <img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/para.png" width="420px">
 ### 🎨Draw Visualization Images
  - This following script provides a standardized pipeline for generating publication-quality 3D visualizations from 2D images. 
 
@@ -199,6 +208,9 @@ If the metrics are calculated directly from the existing test image, then commen
    ```matlab
    view(-37.5,30);              % Set 3D view perspective (azimuth -37.5°, elevation 30°)
    ```
+   - 3D Visualization
+     
+
 ### Others
 
 
