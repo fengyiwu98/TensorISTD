@@ -47,8 +47,10 @@ TensorISTD/
 │   ├── get_curves.m          # Metrics calculator
 │   ├── measure_calculator.m  # SCR/CG/BSF/BSR calculator
 │   └── pt_nms.m              # Non-maximum suppression
+├── 3D_Visualization          
 ├── LICENSE                   # open-source license
-├── README.md                  
+├── README.md
+├── color1.mat           
 └── evaluation.m              
 ```
   
@@ -164,6 +166,10 @@ If the metrics are calculated directly from the existing test image, then commen
    │    │    ├── ...
    │    ├── ...
    ```
+
+   <img src="https://github.com/Csy1408/csyfirst/blob/main/fig_results/sequence1/SOTA_1.png" width="420px"><img src="https://github.com/Csy1408/csyfirst/blob/main/fig_results/sequence1/SOTA_2.png" width="420px">
+   <img src="https://github.com/Csy1408/csyfirst/blob/main/fig_results/sequence1/SOTA_3.png" width="420px"><img src="https://github.com/Csy1408/csyfirst/blob/main/fig_results/sequence1/SOTA_4.png" width="420px">
+
 ### 🎨Draw Visualization Images
  - This following script provides a standardized pipeline for generating publication-quality 3D visualizations from 2D images. 
 
