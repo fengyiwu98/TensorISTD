@@ -208,7 +208,7 @@ If the metrics are calculated directly from the existing test image, then commen
    ```matlab
    view(-37.5,30);              % Set 3D view perspective (azimuth -37.5°, elevation 30°)
    ```
-   5. Color
+   5. Color Configuration
    
    The colormap is provided as color1.mat.
    - 3D Visualization
@@ -449,6 +449,6 @@ We used sequences from [[1]](http://www.csdata.org/en/p/387/).
 
 [![](https://img.shields.io/badge/Link-grey)](https://ieeexplore.ieee.org/document/9088265)
 
-[10] Victor T. Tom, Tamar Peli, May Leung, and Joseph E. Bondaryk, "Morphology-based algorithm for point target detection in infrared backgrounds", Proc. SPIE 1954, Signal and Data Processing of Small Targets 1993.
+[10] Tom V T, Peli T, Leung M, and Joseph E. Bondaryk, "Morphology-based algorithm for point target detection in infrared backgrounds", Proc. SPIE 1954, Signal and Data Processing of Small Targets, 1993.
 
 [![](https://img.shields.io/badge/Link-grey)](https://www.spiedigitallibrary.org/conference-proceedings-of-spie/1954/0000/Morphology-based-algorithm-for-point-target-detection-in-infrared-backgrounds/10.1117/12.157758.short)
