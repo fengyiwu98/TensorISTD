@@ -328,17 +328,17 @@ We used sequences from [[1]](http://www.csdata.org/en/p/387/).
   </tr>
   <tr>
     <td class="tg-c3ow">LogTFNN</td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
+    <td class="tg-c3ow">4.0670</td>
+    <td class="tg-c3ow">5.8448</td>
+    <td class="tg-c3ow">1.1340</td>
+    <td class="tg-c3ow">0.9831</td>
+    <td class="tg-c3ow">0.5241</td>
+    <td class="tg-c3ow">6.9005e-2</td>
+    <td class="tg-c3ow">1.5003</td>
+    <td class="tg-c3ow">0.9128e2</td>
+    <td class="tg-c3ow">1.5072</td>
+    <td class="tg-c3ow">0.9762</td>
+    <td class="tg-c3ow">0.5172</td>
   </tr>
   <tr>
     <td class="tg-c3ow">Modek1k2</td>
