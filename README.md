@@ -48,7 +48,7 @@ TensorISTD/
 │   ├── measure_calculator.m  # SCR/CG/BSF/BSR calculator
 │   └── pt_nms.m              # Non-maximum suppression
 ├── 3D_Visualization          
-├── LICENSE                   # open-source license
+├── LICENSE                   # Open-source license
 ├── README.md
 ├── color1.mat           
 └── evaluation.m              
