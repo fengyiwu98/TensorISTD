@@ -210,8 +210,6 @@ If the metrics are calculated directly from the existing test image, then commen
    
    <img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/tar31.png" width="320px"><img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/tarvis.png" width="320px">
 
-### Others
-
 
 ## Evaluation Table (Keep Updating)
 
