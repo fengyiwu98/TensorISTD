@@ -5,7 +5,9 @@ This toolbox introduces a streamlined pipeline to test detection methods. It est
 
 TensorISTD empowers researchers with quick access to optimization-oriented infrared small target detection tools while encouraging the development of novel methods. We warmly invite contributors to enrich the benchmark by sharing their own techniques.
 
-Note: This repository will be updated regularly, so stay tuned for improvements and new features!
+Note: 
+1. This repository will be updated regularly, so stay tuned for improvements and new features!
+2. If you would like to contribute, please contact us!
 
 ## Requirement
 Matlab 2021b or higher.
@@ -20,16 +22,11 @@ Matlab 2021b or higher.
 TensorISTD/
 ├── algorithms/               # Core detection algorithms
 │   ├── 4D_ISTD/              # [1]
-│   ├── ASTTV-NTLA/           # [2]
-│   ├── IPI/                  # [3]
-│   ├── LogTFNN/              # [4]
-│   ├── MPCM/                 # [5]
-│   ├── NPSTT/                # [6]
-│   ├── PSTNN/                # [7]
-│   ├── RIPT/                 # [8]
-│   ├── STPA_FCTN/            # (Ours) 
-│   ├── STT/                  # [9]
-│   └── Tophat/               # [10]
+│   ├── IPI/                  # [2]
+│   ├── LogTFNN/              # [3]
+│   ├── NPSTT/                # [4]
+│   ├── PSTNN/                # [5]
+│   └── STPA_FCTN/            # Ours
 ├── all_results/              # Raw detection outputs
 │   └── sequence1/            # Sample sequence
 │       └── STPA_FCTN/        # Algorithm-specific results
@@ -48,7 +45,7 @@ TensorISTD/
 │   ├── measure_calculator.m  # SCR/CG/BSF/BSR calculator
 │   └── pt_nms.m              # Non-maximum suppression
 ├── 3D_Visualization          
-├── LICENSE                   # Open-source license
+├── LICENSE                   # open-source license
 ├── README.md
 ├── color1.mat           
 └── evaluation.m              
@@ -64,7 +61,7 @@ TensorISTD/
 %% user configs
 eval_algo_names = ...
     {
-     'IPI' %'TT','TR','MPCM','IPI','LogTFNN','NPSTT','PSTNN','RIPT','STT','Tophat'
+     'IPI' %'TT','TR','IPI','LogTFNN','NPSTT','PSTNN','RIPT','STT'
     };
 
 eval_data_names = ...
@@ -94,9 +91,8 @@ If the metrics are calculated directly from the existing test image, then commen
 ### 📈Evaluation
  - The following metrics can be obtained：
    
- ✅SCRG, ✅CG, ✅BSF, ✅BSR
-
- ✅ Multi-perspective AUC Analysis($AUC_{FPR,TPR}$</th>, $AUC_{\tau,TPR}$</th>, $AUC_{\tau,FPR}$</th>, $AUC_{ODP}$</th>, $AUC_{SNPR}$</th>, $AUC_{TD}$</th>, $AUC_{BS}$</th>, $AUC_{TDBS}$</th>)
+ ✅ SCRG, ✅ CG, ✅ BSF, ✅ BSR, ✅ Multi-perspective AUC Analysis (largely borrowed from 3D-ROC [6]):
+ $AUC_{(FPR,TPR)}$</th>, $AUC_{(\tau,TPR)}$</th>, $AUC_{(\tau,FPR)}$</th>, $AUC_{ODP}$</th>, $AUC_{SNPR}$</th>, $AUC_{TD}$</th>, $AUC_{BS}$</th>, $AUC_{TDBS}$</th>
 
    - Calculate the corresponding .mat file based on step 1 or the existing result plots with the target coordinates of the dataset and store it in the curve index folder.
    ```matlab
@@ -118,7 +114,7 @@ If the metrics are calculated directly from the existing test image, then commen
    %% step 3: Calculating metrics and plotting 3DROC
    curves_drawer(1, eval_algo_names, eval_data_names, figure_base_path, mat_base_path, x_axis_ratio, FPR_thres);
 
-   %% step 4: Calculate SCRG gain,CG, BSF, BSR
+   %% step 4: Calculate SCRG gain, CG, BSF, BSR
    measure_calculator(eval_algo_names, eval_data_names, data_base_path, res_base_path, ...
        mat_base_path, txt_base_path, img_types, preimg_type);
    ```
@@ -176,9 +172,6 @@ If the metrics are calculated directly from the existing test image, then commen
    <img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/algo_1.png" width="420px"><img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/algo_2.png" width="420px">
    <img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/algo_3.png" width="420px"><img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/algo_4.png" width="420px">
 
-   - Comparison of parameters.
-   
-   <img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/para.png" width="420px">
 ### 🎨Draw Visualization Images
  - This following script provides a standardized pipeline for generating publication-quality 3D visualizations from 2D images. 
 
@@ -220,8 +213,8 @@ If the metrics are calculated directly from the existing test image, then commen
 ### Others
 
 
-## Dataset
-We used sequences from [[1]](http://www.csdata.org/en/p/387/).
+## Evaluation Table (Keep Updating)
+
 
 <table class="tg"><thead>
   <tr>
@@ -256,7 +249,7 @@ We used sequences from [[1]](http://www.csdata.org/en/p/387/).
     <td class="tg-c3ow">0.9870</td>
     <td class="tg-c3ow">0.8506</td>
   </tr>
-  <tr>
+<!--   <tr>
     <td class="tg-c3ow">TV-PCP</td>
     <td class="tg-c3ow"></td>
     <td class="tg-c3ow"></td>
@@ -311,7 +304,7 @@ We used sequences from [[1]](http://www.csdata.org/en/p/387/).
     <td class="tg-c3ow"></td>
     <td class="tg-c3ow"></td>
     <td class="tg-c3ow"></td>
-  </tr>
+  </tr> -->
   <tr>
     <td class="tg-c3ow">PSTNN</td>
     <td class="tg-c3ow">inf</td>
@@ -340,7 +333,7 @@ We used sequences from [[1]](http://www.csdata.org/en/p/387/).
     <td class="tg-c3ow">0.9762</td>
     <td class="tg-c3ow">0.5172</td>
   </tr>
-  <tr>
+<!--   <tr>
     <td class="tg-c3ow">Modek1k2</td>
     <td class="tg-c3ow"></td>
     <td class="tg-c3ow"></td>
@@ -353,7 +346,7 @@ We used sequences from [[1]](http://www.csdata.org/en/p/387/).
     <td class="tg-c3ow"></td>
     <td class="tg-c3ow"></td>
     <td class="tg-c3ow"></td>
-  </tr>
+  </tr> -->
   <tr>
     <td class="tg-c3ow">NPSTT</td>
     <td class="tg-c3ow">inf</td>
@@ -412,43 +405,42 @@ We used sequences from [[1]](http://www.csdata.org/en/p/387/).
   </tr>
 </tbody></table>
 
+We used sequences from [[1]](http://www.csdata.org/en/p/387/).
+
+
 ## References
+
+
 [1] F. Wu, H. Yu, A. Liu, J. Luo, and Z. Peng, “Infrared small target detection using spatiotemporal 4-d tensor train and ring unfolding,” IEEE Trans. Geosci. Remote Sens., vol. 61, pp. 1–22, 2023.
 
-[![](https://img.shields.io/badge/Link-grey)](https://ieeexplore.ieee.org/document/10156866)
+[![](https://img.shields.io/badge/Link-Paper-blue)](https://ieeexplore.ieee.org/document/10156866)
 
-[2] T. Liu, J. Yang, B. Li, C. Xiao, Y. Sun, Y. Wang, and W. An, “Nonconvex tensor low-rank approximation for infrared small target detection,” IEEE Trans. Geosci. Remote Sens., vol. 60, pp. 1–18, 2021.
 
-[![](https://img.shields.io/badge/Link-grey)](https://ieeexplore.ieee.org/abstract/document/9626011)
+[2] C. Gao, D. Meng, Y. Yang, Y. Wang, X. Zhou, and A. G.Hauptmann, “Infrared patch-image model for small target detection in a single image,” IEEE Trans. Image Process., vol. 22, no. 12, pp. 4996–5009, 2013.
 
-[3] C. Gao, D. Meng, Y. Yang, Y. Wang, X. Zhou, and A. G.Hauptmann, “Infrared patch-image model for small target detection in a single image,” IEEE Trans. Image Process., vol. 22, no. 12, pp. 4996–5009, 2013.
+[![](https://img.shields.io/badge/Link-Paper-blue)](https://ieeexplore.ieee.org/abstract/document/6595533)
 
-[![](https://img.shields.io/badge/Link-grey)](https://ieeexplore.ieee.org/abstract/document/6595533)
+[3] X. Kong, C. Yang, S. Cao, C. Li and Z. Peng, "Infrared Small Target Detection via Nonconvex Tensor Fibered Rank Approximation," in IEEE Transactions on Geoscience and Remote Sensing, vol. 60, pp. 1-21, 2022.
 
-[4] X. Kong, C. Yang, S. Cao, C. Li and Z. Peng, "Infrared Small Target Detection via Nonconvex Tensor Fibered Rank Approximation," in IEEE Transactions on Geoscience and Remote Sensing, vol. 60, pp. 1-21, 2022.
+[![](https://img.shields.io/badge/Link-Paper-blue)](https://ieeexplore.ieee.org/abstract/document/9394596)
 
-[![](https://img.shields.io/badge/Link-grey)](https://ieeexplore.ieee.org/abstract/document/9394596)
+[4] G. Wang, B. Tao, X. Kong, and Z. Peng, “Infrared small target detection using nonoverlapping patch spatial–temporal tensor factorization with capped nuclear norm regularization,” IEEE Trans. Geosci. Remote Sens., vol. 60,pp. 1–17, 2021.
 
-[5] Y. Wei, X. You, and H. Li, “Multiscale patch-based contrast measure for small infrared target detection,” Pattern Recognit., vol. 58, pp. 216–226, 2016.
+[![](https://img.shields.io/badge/Link-Paper-blue)](https://ieeexplore.ieee.org/document/9606877)
 
-[![](https://img.shields.io/badge/Link-grey)](https://www.sciencedirect.com/science/article/abs/pii/S0031320316300358)
+[5] L. Zhang and Z. Peng, “Infrared small target detection based on partial sum of the tensor nuclear norm,” Remote Sens., vol. 11, no. 4, p. 382, 2019.
 
-[6] G. Wang, B. Tao, X. Kong, and Z. Peng, “Infrared small target detection using nonoverlapping patch spatial–temporal tensor factorization with capped nuclear norm regularization,” IEEE Trans. Geosci. Remote Sens., vol. 60,pp. 1–17, 2021.
+[![](https://img.shields.io/badge/Link-Paper-blue)](https://www.mdpi.com/2072-4292/11/4/382)
 
-[![](https://img.shields.io/badge/Link-grey)](https://ieeexplore.ieee.org/document/9606877)
+[6] C. -I. Chang, "An Effective Evaluation Tool for Hyperspectral Target Detection: 3D Receiver Operating Characteristic Curve Analysis," in IEEE Transactions on Geoscience and Remote Sensing, vol. 59, no. 6, pp. 5131-5153, June 2021,
 
-[7] L. Zhang and Z. Peng, “Infrared small target detection based on partial sum of the tensor nuclear norm,” Remote Sens., vol. 11, no. 4, p. 382, 2019.
+[![](https://img.shields.io/badge/Link-Paper-blue)](https://ieeexplore.ieee.org/abstract/document/9205919)[![](https://img.shields.io/badge/Code-Matlab-orange)](https://umbc.atlassian.net/wiki/spaces/rssipl/pages/27885869/10.+Download)
 
-[![](https://img.shields.io/badge/Link-grey)](https://www.mdpi.com/2072-4292/11/4/382)
+**Note: If you used the above codes, please cite the relevant paper.**
 
-[8] Y. Dai and Y. Wu, “Reweighted infrared patch-tensor model with both nonlocal and local priors for single-frame small target detection,” IEEE J. Sel. Topics Appl. Earth Observ. Remote Sens., vol. 10, no. 8, pp. 3752–3767, 2017.
 
-[![](https://img.shields.io/badge/Link-grey)](https://ieeexplore.ieee.org/abstract/document/7932858)
+## Acknowledgements
 
-[9] H.-K. Liu, L. Zhang, and H. Huang, “Small target detection in infrared videos based on spatio-temporal tensor model,” IEEE Trans. Geosci. Remote Sens., vol. 58, no. 12, pp. 8689–8700, 2020.
+**Despite the organizers of this repo, we would like to thank the former contributors--Tianfang Zhang, Jian Li, Yuelu Wei, Guanghui Wang, Xuan Kong, Haiyang Yi, Ruochen Qie, Hang Yu, Anran Liu, Simin Liu, and Zhenming Peng--for this Toolbox.**
 
-[![](https://img.shields.io/badge/Link-grey)](https://ieeexplore.ieee.org/document/9088265)
 
-[10] Tom V T, Peli T, Leung M, and Joseph E. Bondaryk, "Morphology-based algorithm for point target detection in infrared backgrounds", Proc. SPIE 1954, Signal and Data Processing of Small Targets, 1993.
-
-[![](https://img.shields.io/badge/Link-grey)](https://www.spiedigitallibrary.org/conference-proceedings-of-spie/1954/0000/Morphology-based-algorithm-for-point-target-detection-in-infrared-backgrounds/10.1117/12.157758.short)
