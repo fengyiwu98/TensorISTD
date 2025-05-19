@@ -223,7 +223,6 @@ If the metrics are calculated directly from the existing test image, then commen
     <th class="tg-baqh">SCRG</th>
     <th class="tg-baqh">BSF</th>
     <th class="tg-baqh">CG</th>
-    <th class="tg-baqh">BSR</th>
     <th class="tg-baqh">$AUC_{FPR,TPR}$</th>
     <th class="tg-baqh">$AUC_{\tau,TPR}$</th>
     <th class="tg-baqh">$AUC_{\tau,FPR}$</th>
@@ -239,7 +238,6 @@ If the metrics are calculated directly from the existing test image, then commen
     <td class="tg-c3ow">inf</td>
     <td class="tg-c3ow">inf</td>
     <td class="tg-c3ow">1.8051</td>
-    <td class="tg-c3ow">inf</td>
     <td class="tg-c3ow">0.9926</td>
     <td class="tg-c3ow">0.8562</td>
     <td class="tg-c3ow">5.6319e-2</td>
@@ -310,7 +308,6 @@ If the metrics are calculated directly from the existing test image, then commen
     <td class="tg-c3ow">inf</td>
     <td class="tg-c3ow">inf</td>
     <td class="tg-c3ow">1.4857</td>
-    <td class="tg-c3ow">inf</td>
     <td class="tg-c3ow">0.9414</td>
     <td class="tg-c3ow">0.7511</td>
     <td class="tg-c3ow">5.9107e-3</td>
@@ -325,7 +322,6 @@ If the metrics are calculated directly from the existing test image, then commen
     <td class="tg-c3ow">4.0670</td>
     <td class="tg-c3ow">5.8448</td>
     <td class="tg-c3ow">1.1340</td>
-    <td class="tg-c3ow">4.4728</td>
     <td class="tg-c3ow">0.9831</td>
     <td class="tg-c3ow">0.5241</td>
     <td class="tg-c3ow">6.9005e-2</td>
@@ -354,7 +350,6 @@ If the metrics are calculated directly from the existing test image, then commen
     <td class="tg-c3ow">inf</td>
     <td class="tg-c3ow">inf</td>
     <td class="tg-c3ow">1.8619</td>
-    <td class="tg-c3ow">inf</td>
     <td class="tg-c3ow">0.9749</td>
     <td class="tg-c3ow">0.7894</td>
     <td class="tg-c3ow">5.1547e-3</td>
@@ -369,7 +364,6 @@ If the metrics are calculated directly from the existing test image, then commen
     <td class="tg-c3ow">92.588</td>
     <td class="tg-c3ow">44.404</td>
     <td class="tg-c3ow">2.1198</td>
-    <td class="tg-c3ow">6.8976</td>
     <td class="tg-c3ow">0.9994</td>
     <td class="tg-c3ow">0.9310</td>
     <td class="tg-c3ow">5.1442e-3</td>
@@ -384,7 +378,6 @@ If the metrics are calculated directly from the existing test image, then commen
     <td class="tg-c3ow">105.63</td>
     <td class="tg-c3ow">50.668</td>
     <td class="tg-c3ow">2.1445</td>
-    <td class="tg-c3ow">6.9999</td>
     <td class="tg-c3ow">0.9969</td>
     <td class="tg-c3ow">0.9310</td>
     <td class="tg-c3ow">5.0919e-2</td>
@@ -399,7 +392,6 @@ If the metrics are calculated directly from the existing test image, then commen
     <td class="tg-c3ow">156.40</td>
     <td class="tg-c3ow">73.478</td>
     <td class="tg-c3ow">2.1593</td>
-    <td class="tg-c3ow">7.2786</td>
     <td class="tg-c3ow">0.9994</td>
     <td class="tg-c3ow">0.9587</td>
     <td class="tg-c3ow">5.0851e-3</td>
