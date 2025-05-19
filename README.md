@@ -61,7 +61,7 @@ TensorISTD/
 %% user configs
 eval_algo_names = ...
     {
-     'IPI' %'TT','TR','IPI','LogTFNN','NPSTT','PSTNN','RIPT','STT'
+     'STPA_FCTN' %'TT','TR','IPI','LogTFNN','NPSTT','PSTNN','RIPT','STT'
     };
 
 eval_data_names = ...
