@@ -1,12 +1,12 @@
 function [L,S] = TRPCA(X, lambda, opts)
 
-    tol = 1e-2; %小于这个数就停止
+    tol = 1e-2; %tol
     max_iter = 500;
     rho = 1.05; 
     mu = 2*1e-3;
     max_mu = 1e10;
     DEBUG = 0;
-    N = rankN(X,0.1); %X的秩
+    N = rankN(X,0.1); 
 
 
     if ~exist('opts', 'var')
@@ -29,15 +29,15 @@ function [L,S] = TRPCA(X, lambda, opts)
 
         preT = sum(S(:) > 0);
         
-        % update L 背景
+        % update L 
         R = -S+X-Y/mu;
         L = prox_tnn(R,1/mu);
 
-        % update S 目标
+        % update S 
         T = -L+X-Y/mu;
         S = prox_l1(T, lambda/mu);
         
-        % updata Y mu 其他参数
+        % updata Y mu 
         dY = L+S-X;
         err = norm(dY(:))/norm(X(:));
 
@@ -63,7 +63,7 @@ end
 
 function N = rankN(X, ratioN)
     [~,~,n3] = size(X);
-    D = Unfold(X,n3,1); % �? 
+    D = Unfold(X,n3,1); % 
     [~, S, ~] = svd(D, 'econ');
     [desS, ~] = sort(diag(S), 'descend');
     ratioVec = desS / desS(1);
@@ -98,7 +98,7 @@ tau = 1/mu;
 [U,S,V] = svd(Y(:,:,1),'econ');
 diagS = diag(S);
 [desS, sIdx] = sort(diagS, 'descend');
-%.[Y1, Y2, Y3, ...] = deal(X1, X2, X3, ...)相当�?Y1 = X1; Y2 = X2; Y3 = X3; ...
+%.[Y1, Y2, Y3, ...] = deal(X1, X2, X3, ...) Y1 = X1; Y2 = X2; Y3 = X3; ...
 [desU, desV] = deal(U(:, sIdx), V(:, sIdx));
 [U1, diagS1, V1] = deal(desU(:, 1:N), desS(1:N), desV(:, 1:N));
 [U2, diagS2, V2] = deal(desU(:, N+1:end), desS(N+1:end), desV(:, N+1:end));    
