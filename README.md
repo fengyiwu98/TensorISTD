@@ -66,7 +66,7 @@ eval_algo_names = ...
 
 eval_data_names = ...
     {
-     'sequence1' %'sequence1','sequence4','sequence7','sequence9','sequence11','sequence12'
+     'sequence1' 
     };
 ```
 - Execute the code in step 1：
