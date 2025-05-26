@@ -1,85 +1,82 @@
+ % This code is an implement of NPSTT.
+% Ref: G. Wang, B. Tao, X. Kong and Z. Peng., "Infrared Small TargetDetection Using Nonoverlapping Patch Spatialâ€“Temporal Tensor Factorization With Capped Nuclear Norm Regularization.",TGRS, 2022.
+% 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % If you have any questions, please contact:
-% Author: Guanghui Wang
-% Email: wangguang147@qq.com
+% Author: 
+% Email: 
 % Copyright:  University of Electronic Science and Technology of China
+% Date: 2025/5/25
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %* License: Our code is only available for non-commercial research use.
 
-clear all;clc;close all;
-addpath 'function'
-addpath 'lib'
-%%%%%%%»ñÈ¡Í¼ÏñµÄÂ·¾¶%%%%%%%%
-% Í¼ÏñĞòÁĞÎÄ¼ş¼Ğ
-exter='.bmp';
+classdef NPSTT
 
-
-%% ²ÎÊıµÄÉèÁZ
-%%%%%%%%%ÒÔÏÂ²ÎÊı¿ÉĞŞ¸Ä%%%%%%%%%%
-patchSize = 70;  % patch 
-slideStep = 70;  % »¬¶¯´°¿ÚµÄ²½³¤
-frame = 3;       % Ç°ºó¸÷frame
-patchNum = 3; 
-tem = fix(patchNum/2); % ÓÃÓÚpaddingµÄÁÙÊ±²ÎÊı£¨ÏòÏÂÈ¡Õû£©
-Length=50;
-for tt=3:3
-seq=['_noise' num2str(tt) '\'];
-img_path = ['D:\dataset\data\',seq];
-des_path=['D:\all_result\',seq,'\NPSTT\'];
-if ~exist(des_path, 'dir')
-    mkdir(des_path);
-end
-
-
-img_num = Length;
-initframe=4;
-endframe=img_num-3;
- path1 = [img_path,num2str(1,'%04d'),  exter]; 
-%path1 = [file_path,num2str(1),'.png'];
+    properties
+        % para
+        patchSize = 70;      
+        slideStep = 70;       
+         
+        result;              % tar
+    end
+    
+    methods
+        %function obj = process(obj, inImg)
+        %img = round(inImg* 255);
+        %img = inImg;
+        function obj = process(obj, inseq_root_path, inidx3)
+        frame = 3;       % å‰åå„frameå¸¿
+        patchNum = 3; 
+        tem = fix(patchNum/2)
+        %len = length(inImg);
+        len = 100;
+        img_num = len;
+        initframe=4;
+        endframe=img_num-3;
+        
+         path1 = [inseq_root_path,num2str(1,'%04d'), '.bmp']; 
+%path1 = [inseq_root_path];
 img1 = imread(path1); 
 
 if ndims( img1 ) == 3
     img1 = rgb2gray( img1 );
 end
+        %img1 = img;
+        [imgHei, imgWid] = size(img1);
+        rowPatchNum = ceil((imgHei - obj.patchSize) / obj.slideStep) + 1;  % patchè¡Œæ•°
+        colPatchNum = ceil((imgWid - obj.patchSize) / obj.slideStep) + 1;  % patchåˆ—æ•°
 
-%ÓÉÓÚÍ¬Ò»¸öĞòÁĞµÄ´óĞ¡ ¹²ÏíÕâĞ©²ÎÊı
-[imgHei, imgWid] = size(img1);
-% ĞĞÊı
-rowPatchNum = ceil((imgHei - patchSize) / slideStep) + 1;  % patchĞĞÊı
-colPatchNum = ceil((imgWid - patchSize) / slideStep) + 1;  % patchÁĞÊı
-% ¸÷patchµÄ×óÉÏ½Ç×ø±ê
-rowPosArr = [1 : slideStep : (rowPatchNum - 1) * slideStep, imgHei - patchSize + 1];
-colPosArr = [1 : slideStep : (colPatchNum - 1) * slideStep, imgWid - patchSize + 1];
-% ´´½¨´æ·ÅÍ¼Æ¬µÄPatchµÄcell
-% extend_curcel ÎªÁË½â¾ö±ß½çÎÊÌâ
-curcel = cell(rowPatchNum,colPatchNum,img_num);  % ĞĞÊı*ÁĞÊı*Ö¡Êı
-extend_curcel = cell(rowPatchNum+2*tem,colPatchNum+2*tem,img_num);  % padding
+        rowPosArr = [1 : obj.slideStep : (rowPatchNum - 1) * obj.slideStep, imgHei - obj.patchSize + 1];
+        colPosArr = [1 : obj.slideStep : (colPatchNum - 1) * obj.slideStep, imgWid - obj.patchSize + 1];
+        % åˆ›å»ºå­˜æ”¾å›¾ç‰‡çš„Patchçš„cell
+        % extend_curcel ä¸ºäº†è§£å†³è¾¹ç•Œé—®é¢˜
+        curcel = cell(rowPatchNum,colPatchNum,img_num);  % è¡Œæ•°*åˆ—æ•°*å¸§æ•°
+        extend_curcel = cell(rowPatchNum+2*tem,colPatchNum+2*tem,img_num);  % padding
 
-for i = 1:img_num
-    path = [img_path,num2str(i,'%04d'),  exter];
+        for i = 1:img_num
+       path = [inseq_root_path,num2str(i,'%04d'),  '.bmp'];
 
    % path = [file_path,num2str(i),'.png'];
-    img = imread(path); 
+    img2 = imread(path); 
    
-    %%¸ñÊ½ÎÊÌâ
-    if ndims( img ) == 3
-        img = rgb2gray( img );
+    %%æ ¼å¼é—®é¢˜
+    if ndims( img2 ) == 3
+        img2 = rgb2gray( img2 );
     end
-    img = double(img);
-tic
-       
-    %% °ÑĞòÁĞÍ¼ÏñµÄpatch·ÅÈëµ½cellØ¯ 
-    for row = 1:rowPatchNum
+    img2 = double(img2);
+
+        
+        for row = 1:rowPatchNum
         for col = 1:colPatchNum
-            % ÔÚµÚiÕÅÍ¼ÏñÖĞ½ØÈ¡µÚrowĞĞµÚcolÁĞµÄpatch
-            tmp_patch = img(rowPosArr(1,row) : rowPosArr(1,row) + patchSize - 1, colPosArr(1,col) : colPosArr(1,col) + patchSize - 1);
+            % åœ¨ç¬¬iå¼ å›¾åƒä¸­æˆªå–ç¬¬rowè¡Œç¬¬colåˆ—çš„patch
+            tmp_patch = img2(rowPosArr(1,row) : rowPosArr(1,row) + obj.patchSize - 1, colPosArr(1,col) : colPosArr(1,col) + obj.patchSize - 1);
             curcel{row,col,i} = tmp_patch;
             extend_curcel{row+tem,col+tem,i} = tmp_patch;
         end
     end
     
-    % À©Õ¹£¨¸´ÖÆÏàÁÚÏñËØ£©
-    % ËÄ½Ç
+    % æ‰©å±•ï¼ˆå¤åˆ¶ç›¸é‚»åƒç´ ï¼‰
+    % å››è§’
     for t1 = 1:tem
         for t2 = 1:tem
             extend_curcel{t1,t2,i} = curcel{1,1,i};
@@ -100,7 +97,7 @@ tic
             extend_curcel{t1,t2,i} = curcel{rowPatchNum,colPatchNum,i};
         end
     end
-    % ËÄ±ß
+    % å››è¾¹
     for t1 = 1:tem
         for t2 = tem+1:tem+colPatchNum
             extend_curcel{t1,t2,i} = curcel{1,t2-tem,i};
@@ -123,26 +120,26 @@ tic
     end
 end
 
-for curframindex=initframe:endframe
-   curframe =  curframindex;
-%% ¹¹½¨NPSTT
-tensorNum = patchNum*patchNum*(frame*2+1);  % 7Ö¡Í¼Ïñ
-% µ±Ç°¿éÔÚ63¸ö¿éÖĞµÄÎ»ÖÃ
-% curpatch = patchNum*patchNum*2*frame+patchNum*tem+tem+1;  
-% curpatch = patchNum*patchNum*frame+patchNum*tem+tem+1; 
-% Ä¿±êÓë±³¾°ÕÅÁ¿µÄ´óĞ¡¾ùÓëµ±Ç°Ö¡ËùÓĞpatch¶Ñµş³ÉµÄÕÅÁ¿´óĞ¡
-curframetartensor = zeros(patchSize, patchSize, rowPatchNum*colPatchNum);
-curframebartensor = zeros(patchSize, patchSize, rowPatchNum*colPatchNum);
+%for curframindex=initframe:endframe
+   curframe =  inidx3+3;
+%% æ„å»ºNPSTT
+tensorNum = patchNum*patchNum*(frame*2+1);  % 7å¸§å›¾åƒï¼Œæ¯å¸§å¿ä¸ªpatch â€”?dim(3)=63
+% å½“å‰å—åœ¨63ä¸ªå—ä¸­çš„ä½ç½®
+% curpatch = patchNum*patchNum*2*frame+patchNum*tem+tem+1;  %é”™äº†ï¼Ÿï¼Ÿï¼¿
+curpatch = patchNum*patchNum*frame+patchNum*tem+tem+1; 
+% ç›®æ ‡ä¸èƒŒæ™¯å¼ é‡çš„å¤§å°å‡ä¸å½“å‰å¸§æ‰€æœ‰patchå †å æˆçš„å¼ é‡å¤§å°ä¸¿??
+curframetartensor = zeros(obj.patchSize, obj.patchSize, rowPatchNum*colPatchNum);
+curframebartensor = zeros(obj.patchSize, obj.patchSize, rowPatchNum*colPatchNum);
 t = 0;
 
-for row = tem+1:rowPatchNum+tem  % Ñ¡¶¨µ±Ç°¿é
+for row = tem+1:rowPatchNum+tem  % é€‰å®šå½“å‰å—ï¼ˆä¸è¿¨??paddingéƒ¨åˆ†ï¼¿
     for col = tem+1:colPatchNum+tem
         
-        % »ñÈ¡¶ÔÓ¦µ±Ç°µÄÖ¡µÄµ±Ç°¿éµÄtensor
+        % è·å–å¯¹åº”å½“å‰çš„å¸§çš„å½“å‰å—çš„tensor
         k = 0;
-        tmp_curpatchtensor = zeros(patchSize, patchSize, tensorNum);        
-        for frameNum = curframe-frame:curframe+frame  % Óëµ±Ç°Ö¡Ïà¹ØµÄÇ°ºóÖ¡
-            for patchRow = -tem:tem  % µ±Ç°¿é¼°Æä¿Õ¼äÖÜÎ§¿é
+        tmp_curpatchtensor = zeros(obj.patchSize, obj.patchSize, tensorNum);        
+        for frameNum = curframe-frame:curframe+frame-3  % ä¸å½“å‰å¸§ç›¸å…³çš„å‰åå¸§
+            for patchRow = -tem:tem  % å½“å‰å—åŠå…¶ç©ºé—´å‘¨å›´å—
                 for patchCol = -tem:tem
                     k = k+1;
                     tmp_curpatchtensor(:,:,k) = extend_curcel{row+patchRow,col+patchCol,frameNum};
@@ -150,17 +147,19 @@ for row = tem+1:rowPatchNum+tem  % Ñ¡¶¨µ±Ç°¿é
             end           
         end
         
-        lambda = 0.5/sqrt(patchNum*patchNum*(1+2*frame)*patchSize);
-         [tenBack,tenTar] = tCSVT(tmp_curpatchtensor,lambda);
+        lambda = 0.5/sqrt(patchNum*patchNum*(1+2*frame)*obj.patchSize);
+         [tenBack,tenTar] = obj.tCSVT(tmp_curpatchtensor,lambda);
         t = t+1;       
         curframetartensor(:,:,t) = tenTar(:,:,curpatch);
         curframebartensor(:,:,t) = tenBack(:,:,curpatch);
-      if curframindex==initframe 
+      %if curframindex==initframe 
+        if inidx3==initframe 
             for index=1:3
                 L(:,:,t,index)=  tenTar(:,:,(index-1)*patchNum*patchNum+patchNum*tem+tem+1);
             end
         end
-         if curframindex==endframe 
+         %if curframindex==endframe 
+         if inidx3==endframe
             for index=1:3
                 L(:,:,t,index)=  tenTar(:,:,(index+4-1)*patchNum*patchNum+patchNum*tem+tem+1);
             end
@@ -168,46 +167,190 @@ for row = tem+1:rowPatchNum+tem  % Ñ¡¶¨µ±Ç°¿é
     end
 end
 
- path2 = [img_path,...
-         num2str(curframe,'%04d'),  exter]; 
-%path2 = [file_path,num2str(curframe),'.png'];
+
+   path2 = [inseq_root_path,num2str(curframe,'%04d'),  '.bmp'];
 curImg = imread(path2);   
 
-%%¸ñÊ½ÎÊÌâ
+%%æ ¼å¼é—®é¢˜
 if ndims( curImg ) == 3
     curImg = rgb2gray( curImg );
 end
 curImg = double(curImg);
 
-tarImg = res_patch_ten(curframetartensor, curImg, patchSize, slideStep);
-%backImg = res_patch_ten(curframebartensor, curImg, patchSize, slideStep);
-res_path = [des_path, num2str(curframe, '%04d'), '.png'];
-imwrite(tarImg / (max(tarImg(:)) + eps), res_path);
-
-        if curframindex==initframe 
-            for index=1:3
-                tarImg = res_patch_ten(L(:,:,:,index), curImg, patchSize, slideStep);
-                res_path = [des_path,num2str(index, '%04d'), '.png'];
-                imwrite(tarImg / (max(tarImg(:)) + eps), res_path);
-            end
-        end
-        if curframindex==endframe 
-            for index=1:3
-                tarImg = res_patch_ten(L(:,:,:,index), curImg, patchSize, slideStep);
-                res_path = [des_path, num2str(index+endframe, '%04d'), '.png'];
-                imwrite(tarImg / (max(tarImg(:)) + eps), res_path);
-            end
-        end
+tarImg = obj.res_patch_ten(curframetartensor, curImg, obj.patchSize, obj.slideStep);
+obj.result = tarImg;
  
-end
-toc
-%time_name = datestr(now, 'yy-mm-dd_HH-MM-SS');
-% res_base_path='D:\code\tensor_code\shiyan\benchmark_release(sea))_2\time_test_results\';
-% txt_path = [res_base_path, 'time_NPSTT_sequence',  num2str(tt) , '.txt'];
-% fid = fopen(txt_path, 'a');
-% times = 1.0 * toc/100 ;
-% disp( num2str(times, '%.4f'));
-% fprintf(fid, '%s\n', num2str(times, '%.4f'),'times.');
-% fclose(fid);
+%end
+    end
+
+    function [L,S] = tCSVT(obj, X,lambda)
+
+    tol = 1e-2; 
+    max_iter = 500;  % éˆ?ã‡æ©î…å”¬å¨†â„ƒæšŸ
+    rho = 1.05; 
+    mu = 1e-3;
+    threshold = 3;
+    max_mu = 1e10;
+    DEBUG = 0;
+    
+    if ~exist('opts', 'var')
+        opts = [];
+    end
+    if isfield(opts, 'tol');         tol = opts.tol;              end
+    if isfield(opts, 'max_iter');    max_iter = opts.max_iter;    end
+    if isfield(opts, 'rho');         rho = opts.rho;              end
+    if isfield(opts, 'mu');          mu = opts.mu;                end
+    if isfield(opts, 'max_mu');      max_mu = opts.max_mu;        end
+    if isfield(opts, 'DEBUG');       DEBUG = opts.DEBUG;          end
+    if isfield(opts, 'N');           N = opts.N;                  end
+    
+    % é’æ¿†îé–?
+    dim = size(X);  % éƒå‰â”–å¯®çŠ»å™ºçå“„î‡­
+    L = zeros(dim);  % æµ£åº£Ğ—é’å—›å™ºB
+    S = zeros(dim);  % ç»‹?æé’å—›å™ºT
+    Y = zeros(dim);  % æ¶”æ¨ºç“™Z
+    
+    N = ones(1,1+round(dim(1,3)/2));  % [I_3 / 2] + 1 æ¶“î„å“ç»±?
+    
+    for iter = 1 : max_iter
+
+        preT = sum(S(:) > 0);  % é©î†½çˆ£æ¶“î…¢æ½ª0éå†ªç¤Œé¨å‹ªé‡œé?
+        
+        % update L é‘³å±¾æ«™B
+        R =  -S+X-Y/mu;
+        L = obj.t_CSVT(R,N,mu);  % TCNNç» æ¥€ç“™æµ£æ»…æ•¤æµœå¶³æµ ãƒ¦æ´¿é‚ç™“é”›åœ¢æ¶“å“„åå¨ˆé›îšŒå¯®å‚š?æ¶“î…æšŸé”›å®¼au = 1/mué”›?
+        % ç’ï¼„ç•»é’å—˜î†Œæ¿‚å›§ç´“éŠé—´é‡œéå¸®ç´™æ¶“?î‚¼æ©î…å”¬æ¶“î…Ÿç˜¡æ¶“î„åé—å›©æ®‘é’å—˜î†Œæµ£å¶‡ç–†é–®æˆ’ç¬‰éšå²‹ç´š
+        for index = 1:1+round(dim(1,3)/2)
+        %for index = 1:8
+             [~,S,~] = svd(L(:,:,index),'econ');
+             diagS = diag(S);
+             thresh = max(diagS-threshold, 0);
+             % é’å—˜î†Œæ¿‚å›§ç´“éŠé—´é‡œéç™—(1,index)ç’å¥è´ŸLæ¶“î…ã‡æµœå·˜hresholdé¨å‹«îšŒå¯®å‚š?æ¶“î…æšŸ
+             N(1,index) = size(find(thresh>0),1);
+        end
+        
+        % update S é©î†½çˆ£T
+        T = -L+X-Y/mu;
+        S = obj.prox_l1(T, lambda/mu);
+        
+        % updata Yé”›å œç®»ç€›æ€¹é”›?mu éæœµç²¬é™å‚›æšŸ
+        dY = L+S-X;
+        err = norm(dY(:))/norm(X(:));
+
+        if DEBUG
+            if iter == 1 || mod(iter, 1) == 0
+                disp(['iter ' num2str(iter) ', mu=' num2str(mu) ...
+                    ', err=' num2str(err)...
+                    ',|T|0 = ' num2str(sum(S(:) > 0))]);
+            end
+        end
+
+        currT = sum(S(:) > 0);
+
+        if err < tol || (preT>0 && currT>0 && preT == currT)
+            break;
+        end
+        
+        Y = Y + dY*mu;
+        mu = min(rho*mu,max_mu);
+        
+    end
 end
 
+    
+
+function x = prox_l1(obj,b,lambda)
+
+x = max(0,b-lambda)+min(0,b+lambda);
+x = max(x,0);
+
+end
+
+function [X] = t_CSVT(obj,Y,N,mu)
+% Tensor Capped Singular Value Thresholding(t-CSVT)
+% å¯®çŠ»å™ºæ¶“å©‡æªºæ¿‚å›§ç´“éŠå¥¸æ§‡éŠè‚©ç•»ç€›?t-CSVT)
+% N(1,i)æ¶“å“„åå¨ˆé›îšŒå¯®å‚š?æ¶“î…æšŸé”›å®¼au = 1/mu
+
+[n1,n2,n3] = size(Y);
+X = zeros(n1,n2,n3);
+Y = fft(Y,[],3);
+tau = 1/mu;
+
+% first frontal slice ç»—îƒ¿ç«´æ¶“î…î„œé—ˆãˆ åé—?
+% é—„å¶…ç°­SVD
+[U,S,V] = svd(Y(:,:,1),'econ');
+diagS = diag(S);
+[desS, sIdx] = sort(diagS, 'descend');
+%.[Y1, Y2, Y3, ...] = deal(X1, X2, X3, ...)é©ç¨¿ç¶‹æµœ?Y1 = X1; Y2 = X2; Y3 = X3; ...
+[desU, desV] = deal(U(:, sIdx), V(:, sIdx));
+% æµ î™”æ¶“è™¹æ™«é—„æ„¶ç´çå—›æª·æ´å¿•æ®‘USVé’å›¨åšé“å¶„ç«´é—å©‚æ‹°éšåºç«´é—?
+[U1, diagS1, V1] = deal(desU(:, 1:N(1,1)), desS(1:N(1,1)), desV(:, 1:N(1,1)));
+[U2, diagS2, V2] = deal(desU(:, N(1,1)+1:end), desS(N(1,1)+1:end), desV(:, N(1,1)+1:end));    
+threshS2 = max(diagS2-tau, 0);
+% æ¶“å¬ªç´¡ç»›å¤‰ç¯æµœå¶½U1,U2]*diag([diagS1,threshS2])*[V1,V2]'
+X(:,:,1) = U1*diag(diagS1)*V1' + U2*diag(threshS2)*V2';
+
+
+% i=2,...,halfn3
+halfn3 = round(n3/2);
+for i = 2 : halfn3
+    [U,S,V] = svd(Y(:,:,i),'econ');
+    diagS = diag(S);
+    [desS, sIdx] = sort(diagS, 'descend');
+    [desU, desV] = deal(U(:, sIdx), V(:, sIdx));
+    [U1, diagS1, V1] = deal(desU(:, 1:N(1,i)), desS(1:N(1,i)), desV(:, 1:N(1,i)));
+    [U2, diagS2, V2] = deal(desU(:, N(1,i)+1:end), desS(N(1,i)+1:end), desV(:, N(1,i)+1:end));    
+    threshS2 = max(diagS2-tau, 0);    
+    X(:,:,i) = U1*diag(diagS1)*V1' + U2*diag(threshS2)*V2';
+    X(:,:,n3+2-i) = conj(X(:,:,i));
+end
+  
+% if n3 is even
+if mod(n3,2) == 0
+    i = halfn3+1;
+    [U,S,V] = svd(Y(:,:,i),'econ');
+    diagS = diag(S);
+    [desS, sIdx] = sort(diagS, 'descend');
+    [desU, desV] = deal(U(:, sIdx), V(:, sIdx));
+    [U1, diagS1, V1] = deal(desU(:, 1:N(1,2)), desS(1:N(1,2)), desV(:, 1:N(1,2)));
+    [U2, diagS2, V2] = deal(desU(:, N(1,2)+1:end), desS(N(1,2)+1:end), desV(:, N(1,2)+1:end));    
+    threshS2 = max(diagS2-tau, 0);    
+    X(:,:,i) = U1*diag(diagS1)*V1' + U2*diag(threshS2)*V2';
+end
+
+X = ifft(X,[],3);
+end
+    
+   function recImg = res_patch_ten(obj, patchTen, img, patchSize, slideStep)
+
+% IPTå¤åŸæ¨¡å‹
+
+[imgHei, imgWid] = size(img);
+
+rowPatchNum = ceil((imgHei - patchSize) / slideStep) + 1;
+colPatchNum = ceil((imgWid - patchSize) / slideStep) + 1;
+rowPosArr = [1 : slideStep : (rowPatchNum - 1) * slideStep, imgHei - patchSize + 1];
+colPosArr = [1 : slideStep : (colPatchNum - 1) * slideStep, imgWid - patchSize + 1];
+
+%% for-loop version
+accImg = zeros(imgHei, imgWid);
+weiImg = zeros(imgHei, imgWid);
+
+k = 0;
+onesMat = ones(patchSize, patchSize);
+for row = rowPosArr
+    for  col = colPosArr
+        k = k + 1;
+        tmpPatch = reshape(patchTen(:, :, k), [patchSize, patchSize]);
+%         accImg(row : row + patchSize - 1, col : col + patchSize - 1) = tmpPatch;
+%         weiImg(row : row + patchSize - 1, col : col + patchSize - 1) = onesMat;
+        accImg(row : row + patchSize - 1, col : col + patchSize - 1) = tmpPatch + accImg(row : row + patchSize - 1, col : col + patchSize - 1);
+        weiImg(row : row + patchSize - 1, col : col + patchSize - 1) = onesMat +  weiImg(row : row + patchSize - 1, col : col + patchSize - 1);
+    end
+end
+
+recImg = accImg ./ weiImg;
+   end
+
+end
+end
