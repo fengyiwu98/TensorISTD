@@ -44,7 +44,7 @@ TensorISTD/
 │   └── sequence1/            # Sequence-specific figures
 ├── mat_results/              # Performance metrics
 │   ├── curve_results/        # .mat documents
-│   └── index_results/        # Metrics records(3DROC,SCR, etc.)
+│   └── index_results/        # Metrics records(3D-ROC,SCR, etc.)
 ├── time_results/             # Runtime logs
 │    └── STPA-FCTN.txt        # Time consumption record
 ├── utils/                    # Support utilities
@@ -65,10 +65,16 @@ TensorISTD/
 
 ### 🚀 Get Results
 
-- Select the desired algorithm name and datasets：
+**🔥🔥 Main command 🔥🔥**
 ```matlab
-%% evaluation.m
-%% user configs
+evaluation.m
+```
+Use all the evaluation algorithms to get the result plots for all the evaluation datasets present in . /result in the mat file.
+
+**1. Inititalization** 
+
+Select the desired algorithm name and datasets：
+```matlab
 eval_algo_names = ...
     {
      'STPA_FCTN' %'TT','TR','IPI','LogTFNN','NPSTT','PSTNN','RIPT','STT'
@@ -79,58 +85,75 @@ eval_data_names = ...
      'sequence1' 
     };
 ```
-- Execute the code in Step 1：
+
+Fill in the following configuration：
 ```matlab
-%% evaluation.m
-%% Step 1: Use all the evaluation algorithms to get the result plots for all the evaluation datasets present in . /result in the mat file
-get_algo_result(eval_algo_names, eval_data_names, ...
-     img_types, algo_base_path, data_base_path, res_base_path, time_path );
-%Multiframe algorithms(STT, NPSTT)
-%get_algo_result_multiframe(eval_algo_names, eval_data_names, ...
-     %img_types, algo_base_path, data_base_path, res_base_path, time_path );
-```
-- Fill in the the following configuration：
-```matlab
-%% evaluation.m
 img_types = {'*.jpg', '*.bmp', '*.png'}; % Image Type
 algo_base_path = '.\algorithms\'; % Algorithm Path
-data_base_path = '.\dataset/data\'; % Datasets Path
+data_base_path = '.\dataset\data\'; % Datasets Path
 res_base_path =  '.\all_result\'; % Fig Results Path
 time_path = '.\time_results\'; % Time Path
 ```
+
+**2. Choose single frame or multiframe：**
+
+Single-frame (IPI, PSTNN, etc.)
+```matlab
+get_algo_result(eval_algo_names, eval_data_names, ...
+     img_types, algo_base_path, data_base_path, res_base_path, time_path );
+```
+
+Multi-frame (STT, NPSTT, 4-D-TT/TR, STPA-FCTN, etc.)
+```matlab
+get_algo_result_multiframe(eval_algo_names, eval_data_names, ...
+     img_types, algo_base_path, data_base_path, res_base_path, time_path );
+```
+
+
+
 💡`Note`
-If the metrics are calculated directly from the existing test image, then comment out this section and go directly to step 2.
+If the metrics are calculated directly from the existing test image, then comment out this section and go directly to **Evaluation**.
 
 ### 📈 Evaluation
- - The following metrics can be obtained：
-   
- ✅ SCRG, ✅ CG, ✅ BSF, ✅ BSR, ✅ Multi-perspective AUC Analysis (largely borrowed from 3D-ROC [6]):
- $AUC_{(FPR,TPR)}$</th>, $AUC_{(\tau,TPR)}$</th>, $AUC_{(\tau,FPR)}$</th>, $AUC_{ODP}$</th>, $AUC_{SNPR}$</th>, $AUC_{TD}$</th>, $AUC_{BS}$</th>, $AUC_{TDBS}$</th>
 
-   - Calculate the corresponding .mat file based on step 1 or the existing result plots with the target coordinates of the dataset and store it in the curve index folder.
+In this repo, we include the following metrics:
+
+ ✅ SCRG,  ✅ CG, ✅ BSF, 
+ 
+ ✅ Multi-perspective AUC Analysis:
+ $AUC_{(FPR,TPR)}$</th>, $AUC_{(\tau,TPR)}$</th>, $AUC_{(\tau,FPR)}$</th>, $AUC_{ODP}$</th>, $AUC_{SNPR}$</th>, $AUC_{TD}$</th>, $AUC_{BS}$</th>, $AUC_{TDBS}$</th>
+ (largely borrowed from 3D-ROC [6])
+ 
+ **1. Calculate the corresponding .mat file** based on **Get Results** or the existing result plots with the target coordinates of the dataset and store it in the curve index folder.
    ```matlab
-   %% evaluation.m
-   %% step 2: Combining the result plots from step 1 and . GT under /dataset/ann/ to get the roc sequence results
+   %% step 2: 
    get_curves(eval_algo_names, eval_data_names, thres_num, radius, res_base_path, ...
         mat_base_path, txt_base_path, mask_base_path, preimg_type);
    ```
+This step will combine the result plots from step 1 and . GT under /dataset/ann/ to get the roc sequence results
+
    - Related Configurations：
    ```matlab
    %% evaluation.m
    mat_base_path = '.\mat_results\'; % Storage Path for .mat Files
-   txt_base_path =  './dataset/anno/'; % Target coordinates Path
+   txt_base_path =  '.\dataset\anno\'; % Target coordinates Path
    preimg_type = '*.png'; % Result Image Format:.jpg&.png&.bmp...
    ```
-   - Steps 3 and 4 are then performed to obtain the metrics and the 3DROC schematics：
+**2. Calculate the Multi-perspective AUC Analysis:** 
+   
    ```matlab
-   %% evaluation.m
-   %% Step 3: Calculating metrics and plotting 3DROC
    curves_drawer(1, eval_algo_names, eval_data_names, figure_base_path, mat_base_path, x_axis_ratio, FPR_thres);
+   ```
+   
+**3. Calculate the SCRG gain, CG, BSF metrics:** 
 
-   %% Sep 4: Calculate SCRG gain, CG, BSF, BSR
+   ```matlab
    measure_calculator(eval_algo_names, eval_data_names, data_base_path, res_base_path, ...
        mat_base_path, txt_base_path, img_types, preimg_type);
    ```
+
+**4. Draw the 3D-ROC figures**
+
    - 📂The evaluation result will be saved in `index_results`:
    ```
    ├──./mat_result/
@@ -141,12 +164,13 @@ If the metrics are calculated directly from the existing test image, then commen
    │    │    ├── sequence1.txt
    │    │    ├── ...
    ```
- - The 3DROC image can be obtained during the execution of step 3.
+
+ - The 3D-ROC image can be obtained during the execution of step 3.
 
    - Related Configurations：
    ```matlab
    %% evaluation.m
-   figure_base_path = '.\fig_results\'; % 3DROC Figure Path
+   figure_base_path = '.\fig_results\'; % 3D-ROC Figure Path
    x_axis_ratio = 1e-4;
    FPR_thres = 1;
    ```
@@ -162,7 +186,7 @@ If the metrics are calculated directly from the existing test image, then commen
    % Line Type
    LineType = {':' }; %'-.'
    ```
-   - 📂 The evaluation 3DROC result have the following structure:
+   - 📂 The evaluation 3D-ROC result has the following structure:
    ```
    ├──./fig_results/
    │    ├── sequence1
@@ -175,15 +199,15 @@ If the metrics are calculated directly from the existing test image, then commen
    │    │    ├── ...
    │    ├── ...
    ```
-   - The following figures are 3DROC results of STPA-FCTN in seq 1.
+   - The following figures are 3D-ROC results of STPA-FCTN in seq 1.
    
-   <img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/sequence1/SOTA_1.png" width="420px"><img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/sequence1/SOTA_2.png" width="420px">
-   <img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/sequence1/SOTA_3.png" width="420px"><img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/sequence1/SOTA_4.png" width="420px">
+   <img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/sequence1/SOTA_1.png" width="320px"><img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/sequence1/SOTA_2.png" width="320px">
+   <img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/sequence1/SOTA_3.png" width="320px"><img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/sequence1/SOTA_4.png" width="320px">
 
    - Comparison of multiple algorithms.
    
-   <img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/algo_1.png" width="420px"><img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/algo_2.png" width="420px">
-   <img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/algo_3.png" width="420px"><img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/algo_4.png" width="420px">
+   <img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/algo_1.png" width="320px"><img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/algo_2.png" width="320px">
+   <img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/algo_3.png" width="320px"><img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/algo_4.png" width="320px">
 
 ### 🎨 Draw Visualization Images
  - This following script provides a standardized pipeline for generating publication-quality 3D visualizations from 2D images. 
@@ -248,8 +272,8 @@ If the metrics are calculated directly from the existing test image, then commen
 <tbody>
   <tr>
     <td class="tg-c3ow">IPI</td>
-    <td class="tg-c3ow">inf</td>
-    <td class="tg-c3ow">inf</td>
+    <td class="tg-c3ow">Inf</td>
+    <td class="tg-c3ow">Inf</td>
     <td class="tg-c3ow">1.8051</td>
     <td class="tg-c3ow">0.9926</td>
     <td class="tg-c3ow">0.8562</td>
@@ -318,8 +342,8 @@ If the metrics are calculated directly from the existing test image, then commen
   </tr> -->
   <tr>
     <td class="tg-c3ow">PSTNN</td>
-    <td class="tg-c3ow">inf</td>
-    <td class="tg-c3ow">inf</td>
+    <td class="tg-c3ow">Inf</td>
+    <td class="tg-c3ow">Inf</td>
     <td class="tg-c3ow">1.4857</td>
     <td class="tg-c3ow">0.9414</td>
     <td class="tg-c3ow">0.7511</td>
@@ -360,8 +384,8 @@ If the metrics are calculated directly from the existing test image, then commen
   </tr> -->
   <tr>
     <td class="tg-c3ow">NPSTT</td>
-    <td class="tg-c3ow">inf</td>
-    <td class="tg-c3ow">inf</td>
+    <td class="tg-c3ow">Inf</td>
+    <td class="tg-c3ow">Inf</td>
     <td class="tg-c3ow">1.8619</td>
     <td class="tg-c3ow">0.9749</td>
     <td class="tg-c3ow">0.7894</td>
@@ -452,6 +476,6 @@ We used sequences from [[1]](http://www.csdata.org/en/p/387/).
 
 ## Acknowledgements
 
-**Despite the organizers of this repo, we would like to thank the former contributors--Tianfang Zhang, Jian Li, Yuelu Wei, Guanghui Wang, Xuan Kong, Haiyang Yi, Ruochen Qie, Hang Yu, Anran Liu, Simin Liu, and Zhenming Peng--for this Toolbox.**
+Despite the organizers of this repo, we would like to thank the former contributors--**Tianfang Zhang, Jian Li, Yuelu Wei, Guanghui Wang, Xuan Kong, Haiyang Yi, Ruochen Qie, Hang Yu, Anran Liu, Simin Liu, and Zhenming Peng--for this Toolbox.**
 
 
