@@ -5,10 +5,7 @@ This toolbox introduces a streamlined pipeline to test detection methods. It est
 
 TensorISTD empowers researchers with quick access to optimization-oriented infrared small target detection tools while encouraging the development of novel methods. We warmly invite contributors to enrich the benchmark by sharing their own techniques.
 
-Note: 
-1. This repository will be updated regularly, so stay tuned for improvements and new features!
-2. If you would like to contribute, please contact us!
-
+**Table of Contents**
 - [TensorISTD](#tensoristd)
   - [Requirement](#requirement)
   - [Usage Instruction](#usage-instruction)
@@ -18,6 +15,10 @@ Note:
   - [Evaluation Table](#evaluation-table)
   - [References](#references)
   - [Acknowledgements](#acknowledgements)
+ 
+Note: 
+1. This repository will be updated regularly, so stay tuned for improvements and new features!
+2. If you would like to contribute, please contact us!
 
 ## Requirement
 Matlab 2021b or higher.
