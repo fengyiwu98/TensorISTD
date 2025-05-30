@@ -51,22 +51,26 @@ function get_algo_result_multiframe(eval_algo_names, eval_data_names, img_types,
             if start_idx > length(img_dir)
                 continue;
             end
-            
+            len = length(img_dir);
+
             time = 0; 
-            for idx3 = start_idx : length(img_dir)-3
-                img_path = [seq_root_path, img_dir{idx3}];
-                img = imread(img_path);
-                if length(size(img)) > 2
-                    img = rgb2gray(img);
-                end
-                
-                tic %计算算法耗时 
-                %res = algo.process(im2double(img)).result; % input: 0~1
-                res = algo.process(seq_root_path,idx3).result;
-                time = time + toc;
-                res_path = [png_res_base_path, num2str(idx3, '%04d'), '.png'];
-                imwrite(res / (max(res(:)) + eps), res_path); % double型图像范围需要0~1才能顺利保存
-            end
+            tic
+            res = algo.process(seq_root_path,png_res_base_path,len).result;
+            time = time + toc;
+            % for idx3 = start_idx : length(img_dir)
+            %     img_path = [seq_root_path, img_dir{idx3}];
+            %     img = imread(img_path);
+            %     if length(size(img)) > 2
+            %         img = rgb2gray(img);
+            %     end
+            % 
+            %     tic %计算算法耗时 
+            %     %res = algo.process(im2double(img)).result; % input: 0~1
+            %     res = algo.process(seq_root_path,idx3).result;
+            %     time = time + toc;
+            %     res_path = [png_res_base_path, num2str(idx3, '%04d'), '.png'];
+            %     imwrite(res / (max(res(:)) + eps), res_path); % double型图像范围需要0~1才能顺利保存
+            % end
 
 %             dataset{tab_idx} = data_name;
 %             method{tab_idx} = algo_name;

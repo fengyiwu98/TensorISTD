@@ -5,9 +5,9 @@ classdef IPI
         loss;
         result;
     end
-    
+
     methods
-        
+
         function obj = IPI
             obj.opt = struct();
             obj.opt.dw = 60;%30
@@ -15,7 +15,7 @@ classdef IPI
             obj.opt.x_step = 25;
             obj.opt.y_step = 25;%10
         end
-        
+
         function [A_hat, E_hat, loss] = winRPCA_median(obj, I, opt)
 
             if size(I, 3) == 3
@@ -42,10 +42,10 @@ classdef IPI
             % D = D - mean2(D);
             [m1 n1] = size(D);
             lambda = 1 / sqrt(max(m, n));
-            
+
             % 优化问题求解
             [A1, E1, loss] = obj.APG_IR(D, lambda);
-            
+
             %重建恢复
             AA = zeros(m, n, 100);
             EE = zeros(m, n, 100);
@@ -70,20 +70,20 @@ classdef IPI
             for i=1:m
                 for j=1:n
                     if C(i,j) > 0
-                        A_hat(i,j) = median(AA(i,j,1:C(i,j))); % 
+                        A_hat(i,j) = median(AA(i,j,1:C(i,j))); %
                         E_hat(i,j) = median(EE(i,j,1:C(i,j)));
                     end
                 end
             end
         end
-        
+
         function [A_hat,E_hat, loss] = APG_IR(obj, D, lambda, maxIter, tol, ...
-            lineSearchFlag, continuationFlag, eta, mu, outputFileName)
+                lineSearchFlag, continuationFlag, eta, mu, outputFileName)
             % This code is an implementation of Proximal Gradient Algorithm for small target
             % detecton in our published paper: Chenqiang Gao, Deyu Meng, Yi Yang, et al., "Infrared Patch-Image Model for Small Target Detection in a Single Image, " Image Processing, IEEE Transactions on, vol. 22, no. 12, pp. 4996-5009, 2013.
             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             % If you use this code in your publications, please cite:
-            % Chenqiang Gao, Deyu Meng, Yi Yang, et al., "Infrared Patch-Image Model for Small Target Detection in a Single Image, " Image Processing, IEEE Transactions on, vol. 22, no. 12, pp. 4996-5009, 2013. 
+            % Chenqiang Gao, Deyu Meng, Yi Yang, et al., "Infrared Patch-Image Model for Small Target Detection in a Single Image, " Image Processing, IEEE Transactions on, vol. 22, no. 12, pp. 4996-5009, 2013.
             % @article{Gao2013,
             %    author = {Gao, Chenqiang and Meng, Deyu and Yang, Yi and Wang, Yongtao and Zhou, Xiaofang and Hauptmann, Alex},
             %    title = {Infrared Patch-Image Model for Small Target Detection in a Single Image},
@@ -126,7 +126,7 @@ classdef IPI
             %
             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             % If you have any questions, please contact:
-            % Author: Chenqiang Gao 
+            % Author: Chenqiang Gao
             % Email: gaochenqiang@gmail.com or gaocq@cqupt.edu.cn
             % Copyright:  Chongqing University of Posts and Telecommunications
             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -164,7 +164,7 @@ classdef IPI
 
             DISPLAY_EVERY = 20 ;
             DISPLAY = 0 ;
-            
+
             loss = [];
 
             % Initializing optimization variables
@@ -212,15 +212,15 @@ classdef IPI
 
                 [U S V] = svd(G_k_A, 'econ');
                 diagS = diag(S) ;
-            %      temp = max(diagS(150), mu_k/tau_k);
+                %      temp = max(diagS(150), mu_k/tau_k);
 
-            %     X_kp1_A = U * diag(pos(diagS - temp)) * V';
+                %     X_kp1_A = U * diag(pos(diagS - temp)) * V';
                 X_kp1_A = U * diag(obj.pos(diagS- mu_k/tau_k)) * V';
 
-            %     X_kp1_E = sign(G_k_E) .* pos( abs(G_k_E) - lambda* temp );
+                %     X_kp1_E = sign(G_k_E) .* pos( abs(G_k_E) - lambda* temp );
                 X_kp1_E = sign(G_k_E) .* obj.pos( abs(G_k_E) - lambda* mu_k/tau_k );
 
-            %   rankA  = sum(diagS>temp);
+                %   rankA  = sum(diagS>temp);
                 rankA  = sum(diagS>mu_k/tau_k);
 
                 cardE = sum(sum(double(abs(X_kp1_E)>0)));
@@ -266,15 +266,15 @@ classdef IPI
                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-                % In practice, the APG algorithm, sometimes, cannot get  
+                % In practice, the APG algorithm, sometimes, cannot get
                 % a strictly low-rank matrix A_hat after iteration process. Many
-                % singular valus of the obtained matrix A_hat, however, are extremely small. This can be considered 
-                % to be low-rank to a certain extent. Experimental results show that the final recoverd 
+                % singular valus of the obtained matrix A_hat, however, are extremely small. This can be considered
+                % to be low-rank to a certain extent. Experimental results show that the final recoverd
                 % backgournd image and target image are good.
-                % Alternatively, we can make the rank of matrix A_hat lower using the following truncation. 
-                % This trick can make the APG algorithm faster and the performance of our algorithm is still satisfied. 
+                % Alternatively, we can make the rank of matrix A_hat lower using the following truncation.
+                % This trick can make the APG algorithm faster and the performance of our algorithm is still satisfied.
                 % Here we set the truncated threshold as 0.3, while it can be adaptively set based on your actual scenarios.
-                if rankA > 0.3 * min([m n]) 
+                if rankA > 0.3 * min([m n])
                     converged = 1 ;
                 end
                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -300,26 +300,26 @@ classdef IPI
             A_hat = X_k_A ;
             E_hat = X_k_E ;
         end
-        
-        
+
+
         function P = pos(obj, A)
 
             P = A .* double( A > 0 );
-            
+
         end
-        
+
         function obj = process(obj, inImg)
-%         tic
+            %         tic
             [A, E, loss] = obj.winRPCA_median(inImg, obj.opt);
             obj.result = E .* (E>0);%舍弃负数
             obj.loss = loss;
-%         toc
-%         result = obj.result;
-%          % Show the result
-%             figure
-%             imshow(result, []),title('Target');
+            %         toc
+            %         result = obj.result;
+            %          % Show the result
+            %             figure
+            %             imshow(result, []),title('Target');
         end
     end
-    
-    
+
+
 end

@@ -40,7 +40,7 @@ FPR_thres = 1;
 %% step 1: Use all the evaluation algorithms to get the result plots for all the evaluation datasets present in . /result in the mat file
 get_algo_result(eval_algo_names, eval_data_names, ...
      img_types, algo_base_path, data_base_path, res_base_path, time_path );
-%Multiframe algorithms(STT, NPSTT)
+%Multiframe algorithms(STT, TT...)
 %get_algo_result_multiframe(eval_algo_names, eval_data_names, ...
      %img_types, algo_base_path, data_base_path, res_base_path, time_path );
 
