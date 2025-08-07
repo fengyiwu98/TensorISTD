@@ -202,13 +202,13 @@ This step will combine the result plots from step 1 and . GT under /dataset/ann/
    ```
    - The following figures are 3D-ROC results of STPA-FCTN in seq 1.
    
-   <img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/sequence1/SOTA_1.png" width="200px"><img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/sequence1/SOTA_2.png" width="200px">
-   <img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/sequence1/SOTA_3.png" width="200px"><img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/sequence1/SOTA_4.png" width="200px">
+   <img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/sequence1/SOTA_1.png" width="180px"><img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/sequence1/SOTA_2.png" width="180px">
+   <img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/sequence1/SOTA_3.png" width="180px"><img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/sequence1/SOTA_4.png" width="180px">
 
    - Comparison of multiple algorithms.
    
-   <img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/algo_1.png" width="200px"><img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/algo_2.png" width="200px">
-   <img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/algo_3.png" width="200px"><img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/algo_4.png" width="200px">
+   <img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/algo_1.png" width="180px"><img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/algo_2.png" width="180px">
+   <img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/algo_3.png" width="180px"><img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/algo_4.png" width="180px">
 
 ### 🎨 Draw Visualization Images
  - This following script provides a standardized pipeline for generating publication-quality 3D visualizations from 2D images. 
@@ -244,9 +244,8 @@ This step will combine the result plots from step 1 and . GT under /dataset/ann/
    The colormap is provided as color1.mat.
    - 3D Visualization
      
-   <img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/31.png" width="320px"><img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/seqvis.png" width="320px">
-   
-   <img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/tar31.png" width="320px"><img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/tarvis.png" width="320px">
+   <img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/31.png" width="180px"><img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/seqvis.png" width="180px">
+   <img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/tar31.png" width="180px"><img src="https://github.com/fengyiwu98/TensorISTD/blob/main/fig_results/fig/tarvis.png" width="180px">
 
 
 ## Evaluation Table
