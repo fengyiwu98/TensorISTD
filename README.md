@@ -17,8 +17,9 @@ TensorISTD empowers researchers with quick access to optimization-oriented infra
   - [Acknowledgements](#acknowledgements)
  
 Note: 
-1. This repository will be updated regularly, so stay tuned for improvements and new features!
-2. If you would like to contribute, please contact us!
+1. This benchmark also includes the code of our profound and powerful baseline, STPA-FCTN, which can be found in [TensorISTD/algorithms/STPA_FCTN](https://github.com/fengyiwu98/TensorISTD/tree/main/algorithms/STPA_FCTN).
+2. This repository will be updated regularly, so stay tuned for improvements and new features!
+3. If you would like to contribute, please contact us!
 
 ## Requirement
 Matlab 2021b or higher.
