@@ -1,10 +1,21 @@
 # TensorISTD
-TensorISTD is a Matlab-based, open-source, and user-friendly toolbox designed for optimization-based infrared small target detection (ISTD).
 
-This toolbox introduces a streamlined pipeline to test detection methods. It establishes a benchmark for comprehensively evaluating the performance of existing optimization-based approaches—whether single- or multi-frame, matrix- or tensor-based. It supports mainstream metrics such as SCRG, BSF, CG, and the 3-D ROC series.
+[![MATLAB](https://img.shields.io/badge/MATLAB-2021b%2B-orange.svg)]()
+[![License](https://img.shields.io/badge/license-MIT-green.svg)]()
 
-TensorISTD empowers researchers with quick access to optimization-oriented infrared small target detection tools while encouraging the development of novel methods. We warmly invite contributors to enrich the benchmark by sharing their own techniques.
+**TensorISTD** is an **open-source MATLAB toolbox** designed for **optimization-based Infrared Small Target Detection (ISTD)** research and evaluation.
 
+It provides a **unified, streamlined** evaluation pipeline covering:
+- Single-frame / Multi-frame tasks
+- Matrix / Tensor representations
+- Mainstream evaluation metrics (SCRG, BSF, CG, and 3D-ROC series)
+
+**Objectives:**
+1. Enable rapid prototyping and verification of optimization-based detection methods.
+2. Establish a standardized benchmark for fair comparison and reproducibility.
+3. Encourage community contributions to enrich the algorithm library.
+
+---
 **Table of Contents**
 - [TensorISTD](#tensoristd)
   - [Requirement](#requirement)
@@ -20,6 +31,7 @@ Note:
 1. This benchmark also includes the code of our profound and powerful baseline, STPA-FCTN, which can be found in [TensorISTD/algorithms/STPA_FCTN](https://github.com/fengyiwu98/TensorISTD/tree/main/algorithms/STPA_FCTN).
 2. This repository will be updated regularly, so stay tuned for improvements and new features!
 3. If you would like to contribute, please contact us!
+---
 
 ## Requirement
 Matlab 2021b or higher.
@@ -67,7 +79,7 @@ TensorISTD/
 
 ### 🚀 Get Results
 
-**🔥🔥 Main command 🔥🔥**
+**Main command**
 ```matlab
 evaluation.m
 ```
@@ -90,14 +102,14 @@ eval_data_names = ...
 
 Fill in the following configuration：
 ```matlab
-img_types = {'*.jpg', '*.bmp', '*.png'}; % Image Type
-algo_base_path = '.\algorithms\'; % Algorithm Path
-data_base_path = '.\dataset\data\'; % Datasets Path
-res_base_path =  '.\all_result\'; % Fig Results Path
-time_path = '.\time_results\'; % Time Path
+img_types = {'*.jpg', '*.bmp', '*.png'}; 
+algo_base_path = '.\algorithms\'; 
+data_base_path = '.\dataset\data\';
+res_base_path =  '.\all_result\'; 
+time_path = '.\time_results\';
 ```
 
-**2. Choose single frame or multiframe：**
+**2. Choose single-frame or multi-frame algorithm：**
 
 Single-frame (IPI, PSTNN, etc.)
 ```matlab
@@ -111,9 +123,8 @@ get_algo_result_multiframe(eval_algo_names, eval_data_names, ...
      img_types, algo_base_path, data_base_path, res_base_path, time_path );
 ```
 
+💡 `Note`
 
-
-💡`Note`
 If the metrics are calculated directly from the existing test image, then comment out this section and go directly to **Evaluation**.
 
 ### 📈 Evaluation
@@ -122,13 +133,12 @@ In this repo, we include the following metrics:
 
  ✅ SCRG,  ✅ CG, ✅ BSF, 
  
- ✅ Multi-perspective AUC Analysis:
+ ✅ Diverse AUC Analysis ([6]):
  $AUC_{(FPR,TPR)}$</th>, $AUC_{(\tau,TPR)}$</th>, $AUC_{(\tau,FPR)}$</th>, $AUC_{ODP}$</th>, $AUC_{SNPR}$</th>, $AUC_{TD}$</th>, $AUC_{BS}$</th>, $AUC_{TDBS}$</th>
- (largely borrowed from 3D-ROC [6])
+
  
  **1. Calculate the corresponding .mat file** based on **Get Results** or the existing result plots with the target coordinates of the dataset and store it in the curve index folder.
    ```matlab
-   %% step 2: 
    get_curves(eval_algo_names, eval_data_names, thres_num, radius, res_base_path, ...
         mat_base_path, txt_base_path, mask_base_path, preimg_type);
    ```
@@ -137,9 +147,9 @@ This step will combine the result plots from step 1 and . GT under /dataset/ann/
    - Related Configurations：
    ```matlab
    %% evaluation.m
-   mat_base_path = '.\mat_results\'; % Storage Path for .mat Files
-   txt_base_path =  '.\dataset\anno\'; % Target coordinates Path
-   preimg_type = '*.png'; % Result Image Format:.jpg&.png&.bmp...
+   mat_base_path = '.\mat_results\'; 
+   txt_base_path =  '.\dataset\anno\'; 
+   preimg_type = '*.png';
    ```
 **2. Calculate the Multi-perspective AUC Analysis:** 
    
@@ -172,7 +182,7 @@ This step will combine the result plots from step 1 and . GT under /dataset/ann/
    - Related Configurations：
    ```matlab
    %% evaluation.m
-   figure_base_path = '.\fig_results\'; % 3D-ROC Figure Path
+   figure_base_path = '.\fig_results\';
    x_axis_ratio = 1e-4;
    FPR_thres = 1;
    ```
@@ -217,30 +227,21 @@ This step will combine the result plots from step 1 and . GT under /dataset/ann/
    - Key Configuration Parameters
    1. Figure Window
    ```matlab
-   %% Create figure window
-   figure('Units', 'pixels', 'Position', [100 100 703 641]); % Set window properties (units/position)
+   figure('Units', 'pixels', 'Position', [100 100 703 641]);
    ```
-   2. Typography Settings
+   2. Axis Configuration
    ```matlab
-   %% Axes configuration
-   set(gca,...
-       'linewidth', 1, ...      % Axis line width 1pt
-       'Fontname', 'Times New Roman', ... % Western font typeface
-       'FontSize', 27);         % Font size 27pt
-   ```
-   3. Axis Configuration
-   ```matlab
-   xticks(0:50:250);            % X-axis tick interval 50
-   xtickformat('%d');           % X-axis integer format
-   xlim([0 250]);               % X-axis display range [0-250]
-   xtickangle(0);               % X-tick labels horizontal alignment
+   xticks(0:50:250);          
+   xtickformat('%d');          
+   xlim([0 250]);             
+   xtickangle(0);         
    ...
    ```
-   4. View Perspective
+   3. View Perspective
    ```matlab
    view(-37.5,30);              % Set 3D view perspective (azimuth -37.5°, elevation 30°)
    ```
-   5. Color Configuration
+   4. Color Configuration
    
    The colormap is provided as color1.mat.
    - 3D Visualization
@@ -441,12 +442,14 @@ This step will combine the result plots from step 1 and . GT under /dataset/ann/
   </tr>
 </tbody></table>
 
-We used sequences from [[1]](http://www.csdata.org/en/p/387/).
+💡 `Note`
+
+1. In multi-frame evaluation, an "Inf" value does not necessarily indicate that all frames produced infinite results. This can occur if even a single frame yields an "Inf" value. Therefore, for multi-frame scenarios, we recommend using CG or 3-D ROC metrics for more robust and reliable assessment.
+
+2. We used sequences from [[1]](http://www.csdata.org/en/p/387/).
 
 
 ## References
-
-
 [1] F. Wu, H. Yu, A. Liu, J. Luo, and Z. Peng, “Infrared small target detection using spatiotemporal 4-d tensor train and ring unfolding,” IEEE Trans. Geosci. Remote Sens., vol. 61, pp. 1–22, 2023.
 
 [![](https://img.shields.io/badge/Link-Paper-blue)](https://ieeexplore.ieee.org/document/10156866)
