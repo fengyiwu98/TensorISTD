@@ -270,6 +270,7 @@ This step will combine the result plots from step 1 and . GT under /dataset/ann/
     <th class="tg-baqh">$AUC_{TD}$</th>
     <th class="tg-baqh">$AUC_{BS}$</th>
     <th class="tg-baqh">$AUC_{TDBS}$</th>
+    <th class="tg-baqh">Time(s)</th>
   </tr></thead>
 <tbody>
   <tr>
@@ -285,6 +286,7 @@ This step will combine the result plots from step 1 and . GT under /dataset/ann/
     <td class="tg-c3ow">1.8488</td>
     <td class="tg-c3ow">0.9870</td>
     <td class="tg-c3ow">0.8506</td>
+    <td class="tg-c3ow">3.8098</td>
   </tr>
 <!--   <tr>
     <td class="tg-c3ow">TV-PCP</td>
@@ -355,6 +357,7 @@ This step will combine the result plots from step 1 and . GT under /dataset/ann/
     <td class="tg-c3ow">1.6925</td>
     <td class="tg-c3ow">0.9354</td>
     <td class="tg-c3ow">0.7452</td>
+    <td class="tg-c3ow">0.1598</td>
   </tr>
   <tr>
     <td class="tg-c3ow">LogTFNN</td>
@@ -369,6 +372,7 @@ This step will combine the result plots from step 1 and . GT under /dataset/ann/
     <td class="tg-c3ow">1.5072</td>
     <td class="tg-c3ow">0.9762</td>
     <td class="tg-c3ow">0.5172</td>
+    <td class="tg-c3ow">1.0785</td>
   </tr>
 <!--   <tr>
     <td class="tg-c3ow">Modek1k2</td>
@@ -397,6 +401,7 @@ This step will combine the result plots from step 1 and . GT under /dataset/ann/
     <td class="tg-c3ow">1.7643</td>
     <td class="tg-c3ow">0.9698</td>
     <td class="tg-c3ow">0.7842</td>
+    <td class="tg-c3ow">5.1352</td>
   </tr>
   <tr>
     <td class="tg-c3ow">4-D TT</td>
@@ -411,6 +416,7 @@ This step will combine the result plots from step 1 and . GT under /dataset/ann/
     <td class="tg-c3ow">1.9304</td>
     <td class="tg-c3ow">0.9942</td>
     <td class="tg-c3ow">0.9258</td>
+    <td class="tg-c3ow">0.8703</td>
   </tr>
   <tr>
     <td class="tg-c3ow">4-D TR</td>
@@ -425,6 +431,7 @@ This step will combine the result plots from step 1 and . GT under /dataset/ann/
     <td class="tg-c3ow">1.9279</td>
     <td class="tg-c3ow">0.9918</td>
     <td class="tg-c3ow">0.9259</td>
+    <td class="tg-c3ow">2.0360</td>
   </tr>
   <tr>
     <td class="tg-c3ow">STPA-FCTN</td>
@@ -439,6 +446,7 @@ This step will combine the result plots from step 1 and . GT under /dataset/ann/
     <td class="tg-c3ow">1.9581</td>
     <td class="tg-c3ow">0.9944</td>
     <td class="tg-c3ow">0.9536</td>
+    <td class="tg-c3ow">0.9509</td>
   </tr>
 </tbody></table>
 
