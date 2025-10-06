@@ -272,21 +272,6 @@ This step will combine the result plots from step 1 and . GT under /dataset/ann/
     <th class="tg-baqh">Time(s)</th>
   </tr></thead>
 <tbody>
-  <tr>
-    <td class="tg-c3ow">IPI</td>
-    <td class="tg-c3ow">Inf</td>
-    <td class="tg-c3ow">Inf</td>
-    <td class="tg-c3ow">1.8051</td>
-    <td class="tg-c3ow">0.9926</td>
-    <td class="tg-c3ow">0.8562</td>
-    <td class="tg-c3ow">5.6319e-2</td>
-    <td class="tg-c3ow">1.8432</td>
-    <td class="tg-c3ow">1.5384e2</td>
-    <td class="tg-c3ow">1.8488</td>
-    <td class="tg-c3ow">0.9870</td>
-    <td class="tg-c3ow">0.8506</td>
-    <td class="tg-c3ow">3.8098</td>
-  </tr>
 <!--   <tr>
     <td class="tg-c3ow">TV-PCP</td>
     <td class="tg-c3ow"></td>
