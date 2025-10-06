@@ -46,10 +46,9 @@ Matlab 2021b or higher.
 TensorISTD/
 ├── algorithms/               # Core detection algorithms
 │   ├── 4D_ISTD/              # [1]
-│   ├── IPI/                  # [2]
-│   ├── LogTFNN/              # [3]
-│   ├── NPSTT/                # [4]
-│   ├── PSTNN/                # [5]
+│   ├── LogTFNN/              # [2]
+│   ├── NPSTT/                # [3]
+│   ├── PSTNN/                # [4]
 │   └── STPA_FCTN/            # Ours
 ├── all_results/              # Raw detection outputs
 │   └── sequence1/            # Sample sequence
@@ -91,7 +90,7 @@ Select the desired algorithm name and datasets：
 ```matlab
 eval_algo_names = ...
     {
-     'STPA_FCTN' %'TT','TR','IPI','LogTFNN','NPSTT','PSTNN','RIPT','STT'
+     'STPA_FCTN' %'TT','TR','LogTFNN','NPSTT','PSTNN','RIPT','STT'
     };
 
 eval_data_names = ...
@@ -111,7 +110,7 @@ time_path = '.\time_results\';
 
 **2. Choose single-frame or multi-frame algorithm：**
 
-Single-frame (IPI, PSTNN, etc.)
+Single-frame (PSTNN, etc.)
 ```matlab
 get_algo_result(eval_algo_names, eval_data_names, ...
      img_types, algo_base_path, data_base_path, res_base_path, time_path );
@@ -463,23 +462,19 @@ This step will combine the result plots from step 1 and . GT under /dataset/ann/
 [![](https://img.shields.io/badge/Link-Paper-blue)](https://ieeexplore.ieee.org/document/10156866)
 
 
-[2] C. Gao, D. Meng, Y. Yang, Y. Wang, X. Zhou, and A. G.Hauptmann, “Infrared patch-image model for small target detection in a single image,” IEEE Trans. Image Process., vol. 22, no. 12, pp. 4996–5009, 2013.
-
-[![](https://img.shields.io/badge/Link-Paper-blue)](https://ieeexplore.ieee.org/abstract/document/6595533)
-
-[3] X. Kong, C. Yang, S. Cao, C. Li and Z. Peng, "Infrared Small Target Detection via Nonconvex Tensor Fibered Rank Approximation," in IEEE Transactions on Geoscience and Remote Sensing, vol. 60, pp. 1-21, 2022.
+[2] X. Kong, C. Yang, S. Cao, C. Li and Z. Peng, "Infrared Small Target Detection via Nonconvex Tensor Fibered Rank Approximation," in IEEE Transactions on Geoscience and Remote Sensing, vol. 60, pp. 1-21, 2022.
 
 [![](https://img.shields.io/badge/Link-Paper-blue)](https://ieeexplore.ieee.org/abstract/document/9394596)
 
-[4] G. Wang, B. Tao, X. Kong, and Z. Peng, “Infrared small target detection using nonoverlapping patch spatial–temporal tensor factorization with capped nuclear norm regularization,” IEEE Trans. Geosci. Remote Sens., vol. 60,pp. 1–17, 2021.
+[3] G. Wang, B. Tao, X. Kong, and Z. Peng, “Infrared small target detection using nonoverlapping patch spatial–temporal tensor factorization with capped nuclear norm regularization,” IEEE Trans. Geosci. Remote Sens., vol. 60,pp. 1–17, 2021.
 
 [![](https://img.shields.io/badge/Link-Paper-blue)](https://ieeexplore.ieee.org/document/9606877)
 
-[5] L. Zhang and Z. Peng, “Infrared small target detection based on partial sum of the tensor nuclear norm,” Remote Sens., vol. 11, no. 4, p. 382, 2019.
+[4] L. Zhang and Z. Peng, “Infrared small target detection based on partial sum of the tensor nuclear norm,” Remote Sens., vol. 11, no. 4, p. 382, 2019.
 
 [![](https://img.shields.io/badge/Link-Paper-blue)](https://www.mdpi.com/2072-4292/11/4/382)
 
-[6] C. -I. Chang, "An Effective Evaluation Tool for Hyperspectral Target Detection: 3D Receiver Operating Characteristic Curve Analysis," in IEEE Transactions on Geoscience and Remote Sensing, vol. 59, no. 6, pp. 5131-5153, June 2021,
+[5] C. -I. Chang, "An Effective Evaluation Tool for Hyperspectral Target Detection: 3D Receiver Operating Characteristic Curve Analysis," in IEEE Transactions on Geoscience and Remote Sensing, vol. 59, no. 6, pp. 5131-5153, June 2021,
 
 [![](https://img.shields.io/badge/Link-Paper-blue)](https://ieeexplore.ieee.org/abstract/document/9205919)[![](https://img.shields.io/badge/Code-Matlab-orange)](https://umbc.atlassian.net/wiki/spaces/rssipl/pages/27885869/10.+Download)
 
