@@ -255,7 +255,7 @@ This step will combine the result plots from step 1 and . GT under /dataset/ann/
 <table class="tg"><thead>
   <tr>
     <th class="tg-9wq8" rowspan="2">Method</th>
-    <th class="tg-c3ow" colspan="11">Averaged Values</th>
+    <th class="tg-c3ow" colspan="12">Averaged Values</th>
   </tr>
   <tr>
     <th class="tg-baqh">SCRG</th>
