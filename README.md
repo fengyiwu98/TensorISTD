@@ -438,7 +438,7 @@ This step will combine the result plots from step 1 and . GT under /dataset/ann/
 
 1. In multi-frame evaluation, an "Inf" value does not necessarily indicate that all frames produced infinite results. This can occur if even a single frame yields an "Inf" value. Therefore, for multi-frame scenarios, we recommend using CG or 3-D ROC metrics for more robust and reliable assessment.
 
-2. We used sequences from [[1]](http://www.csdata.org/en/p/387/).
+2. We adopted sequences from [[1]](http://www.csdata.org/en/p/387/), and we also provide our data collection [[2]](https://drive.google.com/file/d/1vOgwmkaXzqkekv3xmQU85_4zTJRf42qK/view?usp=drive_link).
 
 
 ## References
