@@ -441,6 +441,26 @@ This step will combine the result plots from step 1 and . GT under /dataset/ann/
 2. We adopted sequences from [[1]](http://www.csdata.org/en/p/387/), and we also provide our data collection [[2]](https://drive.google.com/file/d/1vOgwmkaXzqkekv3xmQU85_4zTJRf42qK/view?usp=drive_link).
 
 
+
+
+
+## Citation
+
+If you find the code useful, please consider citing our paper using the following BibTeX entry.
+
+```
+@ARTICLE{11333368,
+  author={Wu, Fengyi and Chen, Siyu and Liu, Simin and Tao, Bingjie and Luo, Junhai and Peng, Zhenming},
+  journal={IEEE Transactions on Geoscience and Remote Sensing}, 
+  title={A Comprehensive Benchmark for Spatiotemporal Tensor-Based Infrared Small Target Detection}, 
+  year={2026},
+  volume={64},
+  number={},
+  pages={1-20},
+  keywords={Tensors;Benchmark testing;Three-dimensional displays;Correlation;Object detection;Transformers;Computational modeling;Accuracy;Systematics;Clutter;Benchmark;fully connected tensor network completion;infrared small target detection (ISTD)},
+  doi={10.1109/TGRS.2026.3651631}}
+```
+
 ## References
 [1] F. Wu, H. Yu, A. Liu, J. Luo, and Z. Peng, “Infrared small target detection using spatiotemporal 4-d tensor train and ring unfolding,” IEEE Trans. Geosci. Remote Sens., vol. 61, pp. 1–22, 2023.
 
@@ -464,7 +484,6 @@ This step will combine the result plots from step 1 and . GT under /dataset/ann/
 [![](https://img.shields.io/badge/Link-Paper-blue)](https://ieeexplore.ieee.org/abstract/document/9205919)[![](https://img.shields.io/badge/Code-Matlab-orange)](https://umbc.atlassian.net/wiki/spaces/rssipl/pages/27885869/10.+Download)
 
 **Note: If you used the above codes, please cite the relevant paper.**
-
 
 ## Acknowledgements
 
