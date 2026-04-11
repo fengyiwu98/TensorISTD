@@ -24,6 +24,7 @@ It provides a **unified, streamlined** evaluation pipeline covering:
     - [Evaluation](#-evaluation)
     - [Draw Visualization Images](#-draw-visualization-images)
   - [Evaluation Table](#evaluation-table)
+  - [Citation](#citation)
   - [References](#references)
   - [Acknowledgements](#acknowledgements)
  
